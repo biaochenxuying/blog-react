@@ -1,0 +1,77 @@
+.article {
+	.header{
+        .title{
+            margin: 20px 0 0;
+            text-align: center;
+            font-size: 34px;
+            font-weight: bold;
+        }
+        .author {
+            position: relative;
+            margin: 30px 0 40px;
+            padding-left: 50px;
+            .avatar {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 48px;
+                height: 48px;
+                vertical-align: middle;
+                display: inline-block;
+            }
+            .info {
+                float: left;
+                vertical-align: middle;
+                display: inline-block;
+                margin-left: 8px;
+                a{
+                    color: #333;
+                }
+            }
+            .name {
+                margin-right: 3px;
+                font-size: 16px;
+                vertical-align: middle;
+            }
+            .meta {
+                margin-top: 5px;
+                font-size: 12px;
+                color: #969696;
+                span {
+                    padding-right: 5px;
+                }
+            }
+            .tags{
+                float: right;
+                padding-top: 15px;
+                padding-right: 20px;
+                .tag{
+                    padding: 0 10px;
+                    border-right: 2px solid #eee;
+                }
+            }
+        }
+    }
+    .content{
+        min-height: 300px;
+    }
+}
+.heart{
+    height: 60px;
+    text-align: center;
+    margin: 50px;
+    // .anticon svg {
+    //     width: 50px;
+    //     height: 50px;
+    //     display: inline-block;
+    // }
+}
+.loader{
+	color: #999;
+	text-align: center;
+    padding: 50px;
+    font-size: 16px;
+}
+.clearfix{
+    clear: both;
+}

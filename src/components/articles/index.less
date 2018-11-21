@@ -1,0 +1,122 @@
+.fade-enter {
+	opacity: 0.01;
+}
+.fade-enter-active {
+	opacity: 1;
+	transition: opacity 500ms ease-in;
+}
+.fade-exit {
+	opacity: 1;
+}
+.fade-exit-active {
+	opacity: 0.01;
+	transition: opacity 500ms ease-in;
+}
+
+.left {
+	.note-list {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		.title {
+			color: #333;
+			margin: -7px 0 4px;
+			display: inherit;
+			font-size: 18px;
+			font-weight: 700;
+			line-height: 1.5;
+		}
+		// .title:visited {
+		// 	color: #969696;
+		// }
+		.have-img > div {
+			padding-right: 140px;
+		}
+		.have-img .wrap-img {
+			position: absolute;
+			top: 50%;
+			margin-top: -60px;
+			right: 0;
+			width: 125px;
+			height: 100px;
+			img {
+				width: 100%;
+				height: 100%;
+				border-radius: 4px;
+				border: 1px solid #f0f0f0;
+			}
+		}
+		li {
+			line-height: 20px;
+			position: relative;
+			width: 100%;
+			margin: 0 0 15px;
+			padding: 15px 2px 20px 0;
+			border-bottom: 1px solid #f0f0f0;
+			word-wrap: break-word;
+			.abstract {
+				min-height: 50px;
+				margin: 0 0 8px;
+				font-size: 13px;
+				line-height: 24px;
+				color: #666;
+			}
+			.meta {
+				padding-right: 0 !important;
+				font-size: 12px;
+				font-weight: 400;
+				line-height: 20px;
+				a {
+					margin-right: 10px;
+					color: #b4b4b4;
+					&::hover {
+						transition: 0.1s ease-in;
+						-webkit-transition: 0.1s ease-in;
+						-moz-transition: 0.1s ease-in;
+						-o-transition: 0.1s ease-in;
+						-ms-transition: 0.1s ease-in;
+					}
+				}
+				span {
+					margin-right: 10px;
+					color: #b4b4b4;
+				}
+			}
+		}
+		li.have-img {
+			min-height: 140px;
+		}
+	}
+}
+.loader{
+	color: #999;
+	text-align: center;
+    padding: 50px;
+    font-size: 16px;
+}
+.example-appear {
+	opacity: 0.01;
+}
+
+.example-appear.example-appear-active {
+	opacity: 1;
+	transition: opacity 1s ease-in;
+}
+// .example-enter {
+//     transform: translate3d(100%,0,0);
+//     transition: transform 0.5s ;
+//     z-index: 1;
+// }
+
+// .example-enter.example-enter-active {
+//     transform: translate3d(0,0,0);
+// }
+
+// .example-leave {
+//     transform: translate3d(0,0,0);
+//     transition: transform 0.5s ;
+// }
+
+// .example-leave.example-leave-active {
+//     transform: translate3d(0,0,0);
+// }
