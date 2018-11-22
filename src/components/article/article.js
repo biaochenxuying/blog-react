@@ -225,7 +225,7 @@ class Articles extends Component {
 		if (this.props.location.pathname === '/about') {
 			this.setState(
 				{
-					type: 3,
+					type: 3, // 文章类型: 3 是博主简介
 				},
 				() => {
 					let article_id = getQueryStringByName('article_id');

@@ -53,7 +53,7 @@ class Login extends Component {
 			});
 	}
 	handleOk() {
-		const reg = new RegExp('^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$'); //正则表达式
+		const reg = new RegExp('^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$'); 
 		if (!this.state.email) {
 			message.warn('邮箱不能为空！');
 		} else if (!reg.test(this.state.email)) {

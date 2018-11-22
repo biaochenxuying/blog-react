@@ -15,7 +15,7 @@ export function home(state = initNavList, action) {
 			};
 		case types.RECEIVE_NAV:
 			return {
-				...state, //三个点是展开符
+				...state, 
 				navMain: action.navMain,
 			};
 		default:
