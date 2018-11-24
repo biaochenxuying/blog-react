@@ -32,7 +32,7 @@ class Register extends Component {
 				type,
 			})
 			.then(res => {
-				if (res.status === 201 && res.data.code === 0) {
+				if (res.status === 200 && res.data.code === 0) {
 					this.props.registerSuccess(res.data.data);
 					this.props.handleCancel();
 					message.success('注册成功, 请登录~', 1);

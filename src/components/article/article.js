@@ -47,6 +47,7 @@ class Articles extends Component {
 		this.likeArticle = this.likeArticle.bind(this);
 		this.handleChange = this.handleChange.bind(this);
 		this.handleAddComment = this.handleAddComment.bind(this);
+		this.refreshArticle = this.refreshArticle.bind(this);
 	}
 
 	handleAddComment() {
@@ -108,6 +109,12 @@ class Articles extends Component {
 				console.log(err);
 			});
 	}
+
+	refreshArticle(){
+		let article_id = getQueryStringByName('article_id');
+		this.handleSearch(article_id);
+	}
+
 	handleChange(event) {
 		// console.log('event :', event.target)
 		this.setState({
@@ -325,6 +332,7 @@ class Articles extends Component {
 					numbers={this.state.articleDetail.meta.comments}
 					list={this.state.articleDetail.comments}
 					article_id={this.state.articleDetail._id}
+					refreshArticle={this.refreshArticle}
 				/>
 			</div>
 		);

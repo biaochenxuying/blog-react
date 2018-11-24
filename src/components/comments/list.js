@@ -1,21 +1,25 @@
 import './index.less';
 // import logo from '../../assets/userLogo.jpeg';
 import React, { Component } from 'react';
-import { notification, Avatar } from 'antd';
+import { notification, Avatar, Spin } from 'antd';
 import https from '../../utils/https';
 import urls from '../../utils/urls';
 import { timestampToTime } from '../../utils/utils';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import ChildrenComment from './childrenComment.js';
 
 class CommentList extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			isLoading: false,
-			// list: [],
+			visible: false,
+			content: '',
+			comment_id: '',
+			to_user: {},
 			articleDetail: {
 				_id: '',
-				content: 'biaochenxuying biaochenxuying biaochenxuying',
+				content: '',
 				author: 'biaochenxuying',
 				category: [],
 				comments: [],
@@ -34,21 +38,68 @@ class CommentList extends Component {
 				update_time: '',
 			},
 		};
-		this.handleAddThirdComment = this.handleAddThirdComment.bind(this);
+		this.handleAddOtherComment = this.handleAddOtherComment.bind(this);
+		this.handleChange = this.handleChange.bind(this);
+		this.showCommentModal = this.showCommentModal.bind(this);
+		this.handleCancel = this.handleCancel.bind(this);
+	}
+
+	handleCancel() {
+		this.setState({
+			visible: false,
+		});
+	}
+
+	// 添加评论
+	showCommentModal(item, secondItem) {
+		if (!window.sessionStorage.userInfo) {
+			notification.error({
+				message: '登录才能评论，请先登录！',
+			});
+			return false;
+		}
+		// 添加三级评论
+		if (secondItem) {
+			this.setState({
+				visible: true,
+				comment_id: item._id,
+				to_user: secondItem.user,
+			});
+		} else {
+			// 添加二级评论
+			this.setState({
+				visible: true,
+				comment_id: item._id,
+				to_user: item.user,
+			});
+		}
+	}
+
+	handleChange(event) {
+		this.setState({
+			[event.target.name]: event.target.value,
+		});
 	}
 
 	componentWillMount() {}
 
-	handleAddThirdComment(article_id) {
-		if (!article_id) {
+	handleAddOtherComment() {
+		if (!this.state.comment_id) {
 			notification.error({
-				message: '文章不存在！',
+				message: '该父评论不存在！',
+			});
+			return;
+		}
+		if (!this.state.content) {
+			notification.error({
+				message: '评论内容不能为空 ！',
 			});
 			return;
 		}
 		let user_id = '';
 		if (window.sessionStorage.userInfo) {
-			user_id = window.sessionStorage.userInfo.id;
+			let userInfo = JSON.parse(window.sessionStorage.userInfo);
+			user_id = userInfo._id;
 		} else {
 			notification.error({
 				message: '登录才能评论，请先登录！',
@@ -60,21 +111,24 @@ class CommentList extends Component {
 		});
 		https
 			.post(
-				urls.addComment,
+				urls.addThirdComment,
 				{
-					id: this.props.article_id,
+					article_id: this.props.article_id,
 					user_id,
+					comment_id: this.state.comment_id,
 					content: this.state.content,
+					to_user: JSON.stringify(this.state.to_user),
 				},
 				{ withCredentials: true },
 			)
 			.then(res => {
-				// console.log('res:', res);
 				if (res.status === 200 && res.data.code === 0) {
 					this.setState({
 						content: '',
+						visible: false,
 						isLoading: false,
 					});
+					this.props.refreshArticle();
 				} else {
 					notification.error({
 						message: res.data.message,
@@ -82,7 +136,11 @@ class CommentList extends Component {
 				}
 			})
 			.catch(err => {
-				console.log(err);
+				this.setState({
+					visible: false,
+					isLoading: false,
+				});
+				console.error(err);
 			});
 	}
 
@@ -100,37 +158,58 @@ class CommentList extends Component {
 				<div className="item">
 					<div className="item-header">
 						<div className="author">
-							<a href="" className="avator">
+							<a className="avator">
 								<Avatar size="large" icon={item.user.avatar} />
 							</a>
 						</div>
 						<div className="info">
-							<a href="" className="name">
+							<a className="name">
 								{item.user.name}
+								{item.user.type === 0 ? '(作者)' : ''}
 							</a>
 							<div className="time">{item.create_time ? timestampToTime(item.create_time) : ''}</div>
 						</div>
 					</div>
 					<div className="comment-detail">{item.content}</div>
-					{item.other_comments.map(function(e, index) {
+					<div className="item-comment">
+						{/* <a className="like">
+							<Avatar size="small" icon="like" /> 赞
+						</a> */}
+						<a onClick={() => this.showCommentModal(item)} className="message">
+							<Avatar size="small" icon="message" /> 回复
+						</a>
+					</div>
+					{item.other_comments.map((e, index) => {
 						return (
 							<div key={e._id} className="item-other">
 								<div className="item-header">
 									<div className="author">
-										<a href="" className="avator">
+										<a className="avator">
 											<Avatar size="large" icon={e.user.avatar} />
 										</a>
 									</div>
 									<div className="info">
-										<a href="" className="name">
+										<a className="name">
 											{e.user.name}
+											{e.user.type === 0 ? '(作者)' : ''}
 										</a>
 										<div className="time">
 											{e.create_time ? timestampToTime(e.create_time) : ''}
 										</div>
 									</div>
 								</div>
-								<div className="comment-detail">{e.content}</div>
+								<div className="comment-detail">
+									{'@' + e.to_user.name}
+									{e.to_user.type === 0 ? '(作者)' : ''}：{e.content}
+								</div>
+								<div className="item-comment">
+									{/* <a className="like">
+										<Avatar size="small" icon="like" /> 赞
+									</a> */}
+									<a onClick={() => this.showCommentModal(item, e)} className="message">
+										<Avatar size="small" icon="message" /> 回复
+									</a>
+								</div>
 							</div>
 						);
 					})}
@@ -143,7 +222,14 @@ class CommentList extends Component {
 				<div className="top-title">
 					<span>{this.props.numbers} 条评论</span>
 				</div>
-				{list}
+				<Spin spinning={this.state.isLoading}>{list}</Spin>
+				<ChildrenComment
+					visible={this.state.visible}
+					content={this.state.content}
+					handleChange={this.handleChange}
+					handleOk={this.handleAddOtherComment}
+					handleCancel={this.handleCancel}
+				/>
 			</div>
 		);
 	}

@@ -5,7 +5,7 @@ import https from '../../utils/https';
 import urls from '../../utils/urls';
 import LoadingCom from '../loading/loading';
 import LoadEndCom from '../loadEnd/loadEnd';
-import { getScrollTop, getDocumentHeight, getWindowHeight } from '../../utils/utils';
+import { getScrollTop, getDocumentHeight, getWindowHeight, timestampToTime } from '../../utils/utils';
 
 class TimeLineCustom extends Component {
 	constructor(props) {
@@ -81,6 +81,12 @@ class TimeLineCustom extends Component {
 			>
 				<h3>{item.title}</h3>
 				<p>{item.content}</p>
+				<p>
+					<span>
+						{item.start_time ? timestampToTime(item.start_time, false) : ''}--
+					</span>
+					<span> {item.end_time ? timestampToTime(item.end_time, false) : ''}</span>
+				</p>
 			</Timeline.Item>
 		));
 
