@@ -251,12 +251,20 @@ npm run build 或者 yarn run build
 如果你觉得该文章不错，欢迎到我的 github，star 一下，谢谢。
 
 **项目地址：**
+> [前台展示: https://github.com/biaochenxuying/blog-react](https://github.com/biaochenxuying/blog-react)
 
-> [1. 前台展示: https://github.com/biaochenxuying/blog-react](https://github.com/biaochenxuying/blog-react)
+> [管理后台：https://github.com/biaochenxuying/blog-react-admin](https://github.com/biaochenxuying/blog-react-admin)
 
-相关文章：
-> [1. react + node + express + ant + mongodb 的简洁兼时尚的博客网站](http://biaochenxuying.cn/articleDetail?article_id=5bf57a8f85e0f13af26e579b)
-> [2. blog 文章](https://github.com/biaochenxuying/blog)
+> [后端：https://github.com/biaochenxuying/blog-node](https://github.com/biaochenxuying/blog-node)
+
+> [blog：https://github.com/biaochenxuying/blog](https://github.com/biaochenxuying/blog)
+
+**本博客系统的系列文章：**
+
+- 1. [react + node + express + ant + mongodb 的简洁兼时尚的博客网站](http://biaochenxuying.cn/articleDetail?article_id=5bf57a8f85e0f13af26e579b)
+- 2. [react + Ant Design + 支持 markdown 的 blog-react 项目文档说明](http://biaochenxuying.cn/articleDetail?article_id=5bf6bb5e85e0f13af26e57b7)
+- 3. [基于 node + express + mongodb 的 blog-node 项目文档说明](http://biaochenxuying.cn/articleDetail?article_id=5bf8c57185e0f13af26e7d0d)
+- 4. [服务器小白的我,是如何将node+mongodb项目部署在服务器上并进行性能优化的](http://biaochenxuying.cn/articleDetail?article_id=5bfa728bb54f044b4f9da240)
 
 你以为本文就这么结束了 ?  **精彩在后面 ！！！**
 
