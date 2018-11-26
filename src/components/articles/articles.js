@@ -120,9 +120,8 @@ class Articles extends Component {
 				// console.log(res);
 				let num = this.state.pageNum;
 				if (res.status === 200 && res.data.code === 0) {
-					// this.props.saveArticlesList(res.data.data);
 					this.setState({
-						articlesList: this.state.articlesList.concat(res.data.data.list),
+						articlesList: [...this.state.articlesList, ...res.data.data.list],
 						total: res.data.data.count,
 						pageNum: ++num,
 						isLoading: false,

@@ -167,7 +167,7 @@ class CommentList extends Component {
 								{item.user.name}
 								{item.user.type === 0 ? '(作者)' : ''}
 							</a>
-							<div className="time">{item.create_time ? timestampToTime(item.create_time) : ''}</div>
+							<div className="time">{item.create_time ? timestampToTime(item.create_time,true) : ''}</div>
 						</div>
 					</div>
 					<div className="comment-detail">{item.content}</div>
@@ -194,7 +194,7 @@ class CommentList extends Component {
 											{e.user.type === 0 ? '(作者)' : ''}
 										</a>
 										<div className="time">
-											{e.create_time ? timestampToTime(e.create_time) : ''}
+											{e.create_time ? timestampToTime(e.create_time,true) : ''}
 										</div>
 									</div>
 								</div>

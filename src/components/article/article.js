@@ -283,7 +283,7 @@ class Articles extends Component {
 							<div className="meta">
 								<span className="publish-time">
 									{this.state.articleDetail.create_time
-										? timestampToTime(this.state.articleDetail.create_time)
+										? timestampToTime(this.state.articleDetail.create_time, true)
 										: ''}
 								</span>
 								{/* <span className="wordage">字数 {this.state.articleDetail.numbers}</span> */}
