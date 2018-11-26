@@ -109,6 +109,7 @@ class Nav extends Component {
 						zIndex: 1,
 						top: 0,
 						width: '100%',
+						minWidth: '1200px',
 						height: '66px',
 						float: 'left',
 						backgroundColor: 'white',
