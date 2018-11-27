@@ -244,7 +244,7 @@ npm run build 或者 yarn run build
 
 虽然引入了 mock 了，但是还没有时间做模拟数据，想看具体效果，请稳步到我的网站上查看 [http://biaochenxuying.cn/main.html](http://biaochenxuying.cn/main.html)
 
-# 最后
+# 9. 项目地址与文档教程
 
 其他具体的业务代码，都是些常会见到的需求，这里就不展开讲了。
 
@@ -266,17 +266,21 @@ npm run build 或者 yarn run build
 - 3. [基于 node + express + mongodb 的 blog-node 项目文档说明](http://biaochenxuying.cn/articleDetail?article_id=5bf8c57185e0f13af26e7d0d)
 - 4. [服务器小白的我,是如何将node+mongodb项目部署在服务器上并进行性能优化的](http://biaochenxuying.cn/articleDetail?article_id=5bfa728bb54f044b4f9da240)
 
-你以为本文就这么结束了 ?  **精彩在后面 ！！！**
 
-![](https://upload-images.jianshu.io/upload_images/12890819-a6be27522a86a0dd.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+# 10. 最后
+
+
+鉴于问问题的人有点多，小汪时间有限，处理不过来，大家可以加入 QQ 群：186045338 ，一起相互交流学习。
+
 
 对 **全栈开发** 有兴趣的朋友可以扫下方二维码关注我的公众号，我会不定期更新有价值的内容。
-
-> 微信公众号：**BiaoChenXuYing**
-> 分享 前端、后端开发 等相关的技术文章，热点资源，全栈程序员的成长之路。
 
 关注公众号并回复 **福利** 便免费送你视频资源，绝对干货。
 
 福利详情请点击：  [免费资源分享--Python、Java、Linux、Go、node、vue、react、javaScript](https://mp.weixin.qq.com/s?__biz=MzA4MDU1MDExMg==&mid=2247483711&idx=1&sn=1ffb576159805e92fc57f5f1120fce3a&chksm=9fa3c0b0a8d449a664f36f6fdd017ac7da71b6a71c90261b06b4ea69b42359255f02d0ffe7b3&token=1560489745&lang=zh_CN#rd)
 
 ![BiaoChenXuYing](https://upload-images.jianshu.io/upload_images/12890819-091ccce387e2ea34.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+
+
