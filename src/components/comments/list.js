@@ -1,7 +1,7 @@
 import './index.less';
 // import logo from '../../assets/userLogo.jpeg';
 import React, { Component } from 'react';
-import { notification, Avatar, Spin } from 'antd';
+import { message, Avatar, Spin } from 'antd';
 import https from '../../utils/https';
 import urls from '../../utils/urls';
 import { timestampToTime } from '../../utils/utils';
@@ -53,9 +53,7 @@ class CommentList extends Component {
 	// 添加评论
 	showCommentModal(item, secondItem) {
 		if (!window.sessionStorage.userInfo) {
-			notification.error({
-				message: '登录才能评论，请先登录！',
-			});
+			message.error('登录才能评论，请先登录！');
 			return false;
 		}
 		// 添加三级评论
@@ -85,15 +83,11 @@ class CommentList extends Component {
 
 	handleAddOtherComment() {
 		if (!this.state.comment_id) {
-			notification.error({
-				message: '该父评论不存在！',
-			});
+			message.warning('该父评论不存在！');
 			return;
 		}
 		if (!this.state.content) {
-			notification.error({
-				message: '评论内容不能为空 ！',
-			});
+			message.warning('评论内容不能为空!');
 			return;
 		}
 		let user_id = '';
@@ -101,9 +95,7 @@ class CommentList extends Component {
 			let userInfo = JSON.parse(window.sessionStorage.userInfo);
 			user_id = userInfo._id;
 		} else {
-			notification.error({
-				message: '登录才能评论，请先登录！',
-			});
+			message.warning('登录才能评论，请先登录！');
 			return;
 		}
 		this.setState({
@@ -130,9 +122,7 @@ class CommentList extends Component {
 					});
 					this.props.refreshArticle();
 				} else {
-					notification.error({
-						message: res.data.message,
-					});
+					message.error(res.data.message);
 				}
 			})
 			.catch(err => {

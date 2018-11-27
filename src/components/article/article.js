@@ -4,7 +4,7 @@ import logo from '../../assets/userLogo.jpeg';
 import React, { Component } from 'react';
 import Comment from '../comments/comment';
 import CommentList from '../comments/list';
-import { Icon, Avatar, notification, Button } from 'antd';
+import { Icon, Avatar, message, Button } from 'antd';
 import https from '../../utils/https';
 import urls from '../../utils/urls';
 import LoadingCom from '../loading/loading';
@@ -52,15 +52,11 @@ class Articles extends Component {
 
 	handleAddComment() {
 		if (!this.state.articleDetail._id) {
-			notification.error({
-				message: '该文章不存在！',
-			});
+			message.error("该文章不存在！", 1);
 			return;
 		}
 		if (!this.state.content) {
-			notification.error({
-				message: '请输入内容 ！',
-			});
+			message.warning("请输入内容!", 1);
 			return;
 		}
 		let user_id = '';
@@ -68,9 +64,7 @@ class Articles extends Component {
 			let userInfo = JSON.parse(window.sessionStorage.userInfo);
 			user_id = userInfo._id;
 		} else {
-			notification.error({
-				message: '登录才能评论，请先登录！',
-			});
+			message.warning("登录才能评论，请先登录！", 1);
 			return;
 		}
 
@@ -90,9 +84,7 @@ class Articles extends Component {
 			.then(res => {
 				// console.log('res:', res);
 				if (res.status === 200 && res.data.code === 0) {
-					notification.success({
-						message: res.data.message,
-					});
+					message.success(res.data.message, 1);
 					this.setState({
 						isSubmitLoading: false,
 						content: '',
@@ -100,9 +92,7 @@ class Articles extends Component {
 					let article_id = getQueryStringByName('article_id');
 					this.handleSearch(article_id);
 				} else {
-					notification.error({
-						message: res.data.message,
-					});
+					message.error(res.data.message, 1);
 				}
 			})
 			.catch(err => {
@@ -124,9 +114,7 @@ class Articles extends Component {
 
 	likeArticle() {
 		if (!this.state.articleDetail._id) {
-			notification.error({
-				message: '该文章不存在！',
-			});
+			message.error('该文章不存在！', 1);
 			return;
 		}
 		let user_id = '';
@@ -134,9 +122,7 @@ class Articles extends Component {
 			let userInfo = JSON.parse(window.sessionStorage.userInfo);
 			user_id = userInfo._id;
 		} else {
-			notification.error({
-				message: '登录才能评论，请先登录！',
-			});
+			message.warning('登录才能评论，请先登录！', 1);
 			return;
 		}
 		this.setState({
@@ -160,13 +146,9 @@ class Articles extends Component {
 						isLoading: false,
 						articleDetail,
 					});
-					notification.success({
-						message: res.data.message,
-					});
+					message.success(res.data.message, 1);
 				} else {
-					notification.error({
-						message: res.data.message,
-					});
+					message.error(res.data.message, 1);
 				}
 			})
 			.catch(err => {
@@ -205,9 +187,7 @@ class Articles extends Component {
 					document.getElementById('keywords').setAttribute('content', keyword);
 					document.getElementById('description').setAttribute('content', description);
 				} else {
-					notification.error({
-						message: res.data.message,
-					});
+					message.error(res.data.message, 1);
 				}
 			})
 			.catch(err => {
@@ -286,7 +266,7 @@ class Articles extends Component {
 										? timestampToTime(this.state.articleDetail.create_time, true)
 										: ''}
 								</span>
-								{/* <span className="wordage">字数 {this.state.articleDetail.numbers}</span> */}
+								<span className="wordage">字数 {this.state.articleDetail.numbers}</span>
 								<span className="views-count">阅读 {this.state.articleDetail.meta.views}</span>
 								<span className="comments-count">评论 {this.state.articleDetail.meta.comments}</span>
 								<span className="likes-count">喜欢 {this.state.articleDetail.meta.likes}</span>
@@ -319,7 +299,7 @@ class Articles extends Component {
 						loading={this.state.isLoading}
 						onClick={this.likeArticle}
 					>
-						写的很棒，我要点赞
+						给 ta 点鼓励
 					</Button>
 				</div>
 				<Comment

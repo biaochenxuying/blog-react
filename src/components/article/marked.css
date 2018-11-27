@@ -28,8 +28,8 @@ p > code:not([class]) {
 }
 p img{
     /* 图片居中 */
-    margin: 0 auto;
     display: flex;
+    width: 100%;
 }
 
 #content {

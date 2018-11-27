@@ -1,8 +1,7 @@
-
 import './index.less';
 import logo from '../../assets/userLogo.jpeg';
 import React, { Component } from 'react';
-import { Icon, Avatar, notification } from 'antd';
+import { Icon, Avatar, message } from 'antd';
 import { Link } from 'react-router-dom';
 import https from '../../utils/https';
 import urls from '../../utils/urls';
@@ -61,9 +60,7 @@ class SliderRight extends Component {
 						linkList: res.data.data.list,
 					});
 				} else {
-					notification.error({
-						message: res.data.message,
-					});
+					message.error(res.data.message);
 				}
 			})
 			.catch(err => {
@@ -86,9 +83,7 @@ class SliderRight extends Component {
 						list: res.data.data.list,
 					});
 				} else {
-					notification.error({
-						message: res.data.message,
-					});
+					message.error(res.data.message);
 				}
 			})
 			.catch(err => {
@@ -109,11 +104,8 @@ class SliderRight extends Component {
 		// ));
 		const list = this.state.list.map((item, i) => (
 			<Link className="item" key={item._id} to={`/home?tag_id=${item._id}&tag_name=${item.name}&category_id=`}>
-				<span key={item._id} >
-					{item.name}
-				</span>
+				<span key={item._id}>{item.name}</span>
 			</Link>
-			
 		));
 		// const filingList = this.state.filingList.map((item, i) => (
 		// 	<Link to={item.urlId} key={item.id}>

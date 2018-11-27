@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta id="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" name="viewport" />
+    <meta id="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     <meta name="theme-color" content="#000000">
     <meta id="keywords" name="keywords" content="BiaoChenXuYing 的博客网站">
     <meta id="description" name="description" content="分享 WEB 全栈开发等相关的技术文章，热点资源，全栈程序员的成长之路。">
@@ -23,11 +23,17 @@
     <div id="root"> 
       <!-- 首屏加载动画 -->
       <div style="text-align: center; height: 300px; margin-top: 15%">
-        <img src="./img/hearts.svg" width="250" alt="加载中..."> 
-        <div> . . . loading . . . </div> 
+        <img src="./img/loading.svg" width="250" alt="加载中..."> 
+        <!-- <div> . . . loading . . . </div>  -->
       </div> 
     </div>
     <script>
+      // 设置移动端单位自适应，移动端通用的单位为 rem。 
+      document.getElementsByTagName('html')[0].style.fontSize = window.screen.width / 7.5 + 'px';
+     // 如上：通过查询屏幕宽度，动态的设置 html 的 font-size 值，设计稿大多以 750*1334 设置的，通过上述换算后，在设计图上一张 150*150 px 的图，在 css 中对应的 rem 值则为：1.5*1.5 rem
+    </script>
+    <script>
+      // 百度统计代码
       var _hmt = _hmt || [];
       (function() {
         var hm = document.createElement("script");
@@ -35,7 +41,7 @@
         var s = document.getElementsByTagName("script")[0]; 
         s.parentNode.insertBefore(hm, s);
       })();
-      </script>
+    </script>
       
   </body>
 </html>

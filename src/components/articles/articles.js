@@ -4,7 +4,6 @@ import { Icon } from 'antd';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-// import { bindActionCreators } from 'redux';
 import https from '../../utils/https';
 import urls from '../../utils/urls';
 import LoadingCom from '../loading/loading';
@@ -53,9 +52,6 @@ class Articles extends Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		// console.log('nextProps.location :', nextProps.location)
-		// console.log('nextProps.location.pathname :', nextProps.location.search)
-		// console.log('props.location.pathname :', this.props.location.search)
 		if (nextProps.location.search !== this.props.location.search) {
 			this.setState(
 				{
@@ -120,12 +116,12 @@ class Articles extends Component {
 				// console.log(res);
 				let num = this.state.pageNum;
 				if (res.status === 200 && res.data.code === 0) {
-					this.setState({
-						articlesList: [...this.state.articlesList, ...res.data.data.list],
+					this.setState(preState =>({
+						articlesList: [...preState.articlesList, ...res.data.data.list],
 						total: res.data.data.count,
 						pageNum: ++num,
 						isLoading: false,
-					});
+					}));
 					if (this.state.total === this.state.articlesList.length) {
 						this.setState({
 							isLoadEnd: true,

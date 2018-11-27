@@ -65,8 +65,8 @@ class Register extends Component {
 		} else {
 			this.register(this.state);
 		}
-		const re = /^(((13[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
-		if (this.state.phone && !re.test(this.state.phone)) {
+		const re =/^(((13[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+		if (this.state.phone && !re.test(this.state.phone)){
 			message.warn('请输入正确的手机号!');
 		}
 	}
@@ -79,7 +79,7 @@ class Register extends Component {
 		return (
 			<Modal
 				title="注册"
-				style={{ top: '25%' }}
+				style={{ top: '20%' }}
 				visible={this.props.visible}
 				onCancel={this.props.handleCancel}
 				width={500}
