@@ -6,7 +6,16 @@
 
 # 1. 效果
 
+
+效果图：
+
+- pc 端
 ![首页](https://upload-images.jianshu.io/upload_images/12890819-77a83e7ccd563d16.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+- 移动端适配
+
+![mobile.gif](https://upload-images.jianshu.io/upload_images/12890819-f97e98dfa9ac76b8.gif?imageMogr2/auto-orient/strip)
+
 
 完整效果请看：[http://biaochenxuying.cn/main.html](http://biaochenxuying.cn/main.html)
 
