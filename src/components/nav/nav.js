@@ -228,7 +228,7 @@ class Nav extends Component {
 									</Menu.Item>
 									<Menu.Item key="3">
 										<Link to="/timeLine">
-											<Icon type="hourglass" theme="outlined" />时间轴
+											<Icon type="hourglass" theme="outlined" />历程
 										</Link>
 									</Menu.Item>
 									<Menu.Item key="4">
