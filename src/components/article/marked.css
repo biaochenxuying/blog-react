@@ -1,4 +1,5 @@
 /*对 markdown 样式的补充*/
+
 pre {
     display: block;
     padding: 10px;
@@ -6,27 +7,36 @@ pre {
     font-size: 14px;
     line-height: 1.42857143;
     color: #abb2bf;
-    background: #282c34;
+    background: #23241f;
     word-break: break-all;
     word-wrap: break-word;
     overflow: auto;
+    border-radius: 5px;
 }
-h1,h2,h3,h4,h5,h6{
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     margin-top: 1em;
     /* margin-bottom: 1em; */
 }
+
 strong {
     font-weight: bold;
 }
 
-p > code:not([class]) {
+p>code:not([class]) {
     padding: 2px 4px;
     font-size: 90%;
     color: #c7254e;
     background-color: #f9f2f4;
     border-radius: 4px;
 }
-p img{
+
+p img {
     /* 图片居中 */
     display: flex;
     max-width: 100%;
@@ -34,17 +44,19 @@ p img{
 }
 
 #content {
-    font-family: "Microsoft YaHei",  'sans-serif';
+    font-family: "Microsoft YaHei", 'sans-serif';
     font-size: 16px;
     line-height: 30px;
 }
 
-#content .desc ul,#content .desc ol {
+#content .desc ul,
+#content .desc ol {
     color: #333333;
     margin: 1.5em 0 0 25px;
 }
 
-#content .desc h1, #content .desc h2 {
+#content .desc h1,
+#content .desc h2 {
     border-bottom: 1px solid #eee;
     padding-bottom: 10px;
 }
@@ -52,4 +64,3 @@ p img{
 #content .desc a {
     color: #009a61;
 }
-
