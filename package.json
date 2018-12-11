@@ -65,7 +65,7 @@
     "whatwg-fetch": "2.0.3"
   },
   "scripts": {
-    "start": "react-app-rewired start",
+    "start": "PORT=3001 react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test --env=jsdom"
   },
