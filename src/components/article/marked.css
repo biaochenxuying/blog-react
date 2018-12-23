@@ -64,3 +64,10 @@ p img {
 #content .desc a {
     color: #009a61;
 }
+
+#content blockquote {
+    margin: 0 0 1em;
+    background-color: rgb(220, 230, 240);
+    padding: 1em 0 0.5em 0.5em;
+    border-left: 6px solid rgb(181, 204, 226);
+}
