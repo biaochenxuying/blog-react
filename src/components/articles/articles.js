@@ -165,7 +165,7 @@ class Articles extends Component {
 							<Link target="_blank" to={`/articleDetail?article_id=${item._id}`}>
 								<Icon type="heart" theme="outlined" /> {item.meta.likes}
 							</Link>
-							<span className="time">{item.create_time ? timestampToTime(item.create_time) : ''}</span>
+							<span className="time">{item.create_time ? timestampToTime(item.create_time,true) : ''}</span>
 						</div>
 					</div>
 				</li>
