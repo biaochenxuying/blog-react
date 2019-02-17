@@ -8,7 +8,6 @@ import { Icon, Avatar, message, Button } from 'antd';
 import https from '../../utils/https';
 import urls from '../../utils/urls';
 import LoadingCom from '../loading/loading';
-// import { Link } from 'react-router-dom';
 import marked from 'marked';
 import hljs from 'highlight.js';
 import { getQueryStringByName, timestampToTime } from '../../utils/utils';
@@ -122,7 +121,7 @@ class Articles extends Component {
 			let userInfo = JSON.parse(window.sessionStorage.userInfo);
 			user_id = userInfo._id;
 		} else {
-			message.warning('登录才能评论，请先登录！', 1);
+			message.warning('登录才能点赞，请先登录！', 1);
 			return;
 		}
 		this.setState({
@@ -299,7 +298,7 @@ class Articles extends Component {
 						loading={this.state.isLoading}
 						onClick={this.likeArticle}
 					>
-						给 ta 点鼓励
+						点赞
 					</Button>
 				</div>
 				<Comment

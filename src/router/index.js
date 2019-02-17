@@ -65,6 +65,15 @@ let config = [
             loading: () => <div />
         })
     },
+    {
+        name: 'project',
+        path: '/project',
+        exact: true,
+        component: Loadable({
+            loader: () => import('../components/project/project.js'),
+            loading: () => <div />
+        })
+    },
     
 ]
 
