@@ -3,6 +3,7 @@ export const urls = {
   login: "login",
   logout: "logout",
   register: "register",
+  getUser: "getUser",
 
   addComment: 'addComment',
   addThirdComment: 'addThirdComment',

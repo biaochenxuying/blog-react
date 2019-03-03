@@ -1,11 +1,12 @@
 import './index.less';
 import './mobile.less';
 import React, { Component } from 'react';
+import { Layout, BackTop } from 'antd';
 import SliderRight from '../components/slider/index';
 import Nav from '../components/nav/nav';
-import { Layout, BackTop } from 'antd';
 import { isMobileOrPc } from '../utils/utils';
 const { Content, Footer, Sider } = Layout;
+
 
 class Layouts extends Component {
 	constructor(props) {
@@ -18,9 +19,11 @@ class Layouts extends Component {
 		// console.log('pathName:', this.props.location.pathname);
 	}
 	componentDidMount() {}
+	
 	render() {
 		let isShowSlider = false;
 		let pathName = this.props.location.pathname;
+		// console.log("pathName",pathName);
 		if (pathName !== '/articleDetail' && pathName !== '/about' && !isMobileOrPc()) {
 			isShowSlider = true;
 		}

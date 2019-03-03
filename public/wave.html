@@ -10,11 +10,6 @@
     <meta name="theme-color" content="#000000" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
-    <link
-      href="http://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css"
-      rel="stylesheet"
-    />
-    <!-- <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"> -->
     <title id="title">BiaoChenXuYing 的个人博客网站</title>
     <meta name="baidu-site-verification" content="7XGPmF2RtW" />
     <meta id="keywords" name="keywords" content="BiaoChenXuYing 的博客网站" />
@@ -23,19 +18,44 @@
       name="description"
       content="BiaoChenXuYing 的博客网站。BiaoChenXuYing，目前是一名前端开发工程师，BiaoChenXuYing 公众号作者，致力于前端和后端开发、全栈程序员的成长之路。"
     />
+    <style>
+      .root {
+        text-align: center;
+      }
+      .link {
+        display: block;
+        width: 100%;
+        position: absolute;
+        top: 15%;
+        text-align: center;
+        left: 0;
+        color: #1890ff;
+        text-decoration: none;
+        margin-bottom: 30px;
+        font-size: 20px;
+      }
+      .github {
+        top: 20%;
+      }
+      .link:hover {
+        color: #047ef0;
+      }
+    </style>
   </head>
   <body>
-    <div id="root">
+    <div class="root">
+      <a class="link" target="_blank" href="http://biaochenxuying.cn"
+        >个人网站：http://biaochenxuying.cn</a
+      >
+      <a class="link github" target="_blank" href="https://github.com/biaochenxuying"
+        >github：https://github.com/biaochenxuying</a
+      >
       <!-- 首屏加载动画 -->
       <div style="text-align: center; height: 300px; margin-top: 15%">
         <img src="./img/loading.svg" width="250" alt="加载中..." />
       </div>
     </div>
-    <script>
-      // 设置移动端单位自适应，移动端通用的单位为 rem。
-      document.getElementsByTagName('html')[0].style.fontSize =
-        window.screen.width / 7.5 + 'px';
-      // 如上：通过查询屏幕宽度，动态的设置 html 的 font-size 值，设计稿大多以 750*1334 设置的，通过上述换算后，在设计图上一张 150*150 px 的图，在 css 中对应的 rem 值则为：1.5*1.5 rem
-    </script>
+    <script src="./js/three.min.js"></script>
+    <script src="./js/wave.js"></script>
   </body>
 </html>

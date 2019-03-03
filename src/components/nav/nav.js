@@ -2,16 +2,25 @@ import './index.less';
 import logo from '../../assets/all.png';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Layout, Icon, Menu, Row, Col, Button, Drawer } from 'antd';
+import { connect } from 'react-redux';
+import { Layout, Icon, Menu, Row, Col, Button, Drawer, message } from 'antd';
 import Register from '../register/register';
 import Login from '../login/login';
-import { isMobileOrPc } from '../../utils/utils';
+import { isMobileOrPc, getQueryStringByName } from '../../utils/utils';
+
+import https from '../../utils/https';
+import urls from '../../utils/urls';
+import { loginSuccess, loginFailure } from '../../store/actions/user';
 
 const { Header } = Layout;
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 
 // @connect(state => state.getIn(['user']), dispatch => bindActionCreators({ }, dispatch))
+@connect(
+  state => state.getIn(['user']),
+  { loginSuccess, loginFailure },
+)
 class Nav extends Component {
   constructor(props) {
     super(props);
@@ -25,6 +34,7 @@ class Nav extends Component {
       register: false,
       nav: '首页',
       navTitle: '首页',
+      code: '',
     };
     this.menuClick = this.menuClick.bind(this);
     this.showLoginModal = this.showLoginModal.bind(this);
@@ -36,6 +46,7 @@ class Nav extends Component {
     this.handleLogout = this.handleLogout.bind(this);
     this.showDrawer = this.showDrawer.bind(this);
     this.onClose = this.onClose.bind(this);
+    this.getUser = this.getUser.bind(this);
   }
   componentDidMount() {
     if (isMobileOrPc()) {
@@ -43,6 +54,22 @@ class Nav extends Component {
         isMobile: true,
       });
     }
+    // console.log('code :', getQueryStringByName('code'));
+    const code = getQueryStringByName('code')
+    if (code) {
+      this.setState(
+        {
+          code
+        },
+        () => {
+          if (!this.state.code) {
+            return;
+          }
+          this.getUser(this.state.code);
+        },
+      );
+    }
+    // console.log('nexthis.propst :', this.props);
     this.initMenu(this.props.pathname);
   }
 
@@ -93,8 +120,56 @@ class Nav extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    const code = getQueryStringByName('code')
+    if (code) {
+      this.setState(
+        {
+          code
+        },
+        () => {
+          if (!this.state.code) {
+            return;
+          }
+          this.getUser(this.state.code);
+        },
+      );
+    }
     // console.log('next :', nextProps);
     this.initMenu(nextProps.pathname);
+  }
+  getUser(code) {
+    https
+      .post(
+        urls.getUser,
+        {
+          code,
+        },
+        { withCredentials: true },
+      )
+      .then(res => {
+        // console.log('res :', res.data);
+        if (res.status === 200 && res.data.code === 0) {
+          this.props.loginSuccess(res.data);
+          let userInfo = {
+            _id: res.data.data._id,
+            name: res.data.data.name,
+          };
+          window.sessionStorage.userInfo = JSON.stringify(userInfo);
+          message.success(res.data.message, 1);
+          this.handleLoginCancel();
+          // 跳转到之前授权前的页面
+          const href = window.localStorage.preventHref
+          if(href){
+            window.location.href = href 
+          }
+        } else {
+          this.props.loginFailure(res.data.message);
+          message.error(res.data.message, 1);
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   handleMenu = e => {

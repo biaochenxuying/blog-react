@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { registerSuccess, registerFailue } from '../../store/actions/user';
 import https from '../../utils/https';
 import urls from '../../utils/urls';
+import config from '../../utils/config';
 
 @connect(state => state.getIn(['user']), { registerSuccess, registerFailue })
 class Register extends Component {
@@ -70,6 +71,12 @@ class Register extends Component {
 			message.warn('请输入正确的手机号!');
 		}
 	}
+	handleOAuth(){
+    // 保存授权前的页面链接
+    window.localStorage.preventHref = window.location.href
+		// window.location.href = 'https://github.com/login/oauth/authorize?client_id=6de90ab270aea2bdb01c&redirect_uri=http://biaochenxuying.cn/login'
+		window.location.href = `${config.oauth_uri}?client_id=${config.client_id}&redirect_uri=${config.redirect_uri}`
+	}
 	handleChange(event) {
 		this.setState({
 			[event.target.name]: event.target.value,
@@ -129,9 +136,15 @@ class Register extends Component {
 					/>
 				</div>
 				<div className="register-submit">
-					<Button style={{ width: '100%' }} type="primary" onClick={this.handleOk}>
+					<Button style={{ width: '100%', marginBottom : '20px' }} type="primary" onClick={this.handleOk}>
 						注册
 					</Button>
+					<Button
+            style={{ width: '100%' }}
+            onClick={this.handleOAuth}
+          >
+            github 授权登录
+          </Button>
 				</div>
 			</Modal>
 		);
