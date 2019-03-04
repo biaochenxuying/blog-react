@@ -149,7 +149,7 @@ class CommentList extends Component {
 					<div className="item-header">
 						<div className="author">
 							<a className="avator">
-								<Avatar size="large" icon={item.user.avatar} />
+								<Avatar size="large" icon={item.user.avatar} src={item.user.avatar}/>
 							</a>
 						</div>
 						<div className="info">
@@ -175,7 +175,7 @@ class CommentList extends Component {
 								<div className="item-header">
 									<div className="author">
 										<a className="avator">
-											<Avatar size="large" icon={e.user.avatar} />
+											<Avatar size="large" icon={e.user.avatar} src={e.user.avatar} />
 										</a>
 									</div>
 									<div className="info">
