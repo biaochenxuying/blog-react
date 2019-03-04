@@ -1,9 +1,19 @@
 import './index.less';
 import logo from '../../assets/all.png';
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Layout, Icon, Menu, Row, Col, Button, Drawer, message } from 'antd';
+import {
+  Layout,
+  Icon,
+  Menu,
+  Row,
+  Col,
+  Button,
+  Drawer,
+  message,
+  Avatar,
+} from 'antd';
 import Register from '../register/register';
 import Login from '../login/login';
 import { isMobileOrPc, getQueryStringByName } from '../../utils/utils';
@@ -11,6 +21,7 @@ import { isMobileOrPc, getQueryStringByName } from '../../utils/utils';
 import https from '../../utils/https';
 import urls from '../../utils/urls';
 import { loginSuccess, loginFailure } from '../../store/actions/user';
+import LoadingCom from '../loading/loading';
 
 const { Header } = Layout;
 const SubMenu = Menu.SubMenu;
@@ -35,6 +46,7 @@ class Nav extends Component {
       nav: '首页',
       navTitle: '首页',
       code: '',
+      isLoading: false
     };
     this.menuClick = this.menuClick.bind(this);
     this.showLoginModal = this.showLoginModal.bind(this);
@@ -55,11 +67,11 @@ class Nav extends Component {
       });
     }
     // console.log('code :', getQueryStringByName('code'));
-    const code = getQueryStringByName('code')
+    const code = getQueryStringByName('code');
     if (code) {
       this.setState(
         {
-          code
+          code,
         },
         () => {
           if (!this.state.code) {
@@ -69,8 +81,9 @@ class Nav extends Component {
         },
       );
     }
-    // console.log('nexthis.propst :', this.props);
     this.initMenu(this.props.pathname);
+    // this.props.history.push('/message')
+    // this.props.history.push({ pathname:'/message', search:'?sort=name'})
   }
 
   showDrawer = () => {
@@ -120,24 +133,15 @@ class Nav extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const code = getQueryStringByName('code')
-    if (code) {
-      this.setState(
-        {
-          code
-        },
-        () => {
-          if (!this.state.code) {
-            return;
-          }
-          this.getUser(this.state.code);
-        },
-      );
-    }
     // console.log('next :', nextProps);
     this.initMenu(nextProps.pathname);
   }
+  // componentDidUpdate(nextProps){}
+
   getUser(code) {
+    this.setState({
+			isLoading: true,
+		});
     https
       .post(
         urls.getUser,
@@ -147,20 +151,27 @@ class Nav extends Component {
         { withCredentials: true },
       )
       .then(res => {
-        // console.log('res :', res.data);
+        this.setState({
+          isLoading: false,
+        });
         if (res.status === 200 && res.data.code === 0) {
           this.props.loginSuccess(res.data);
           let userInfo = {
             _id: res.data.data._id,
             name: res.data.data.name,
+            avatar: res.data.data.avatar,
           };
           window.sessionStorage.userInfo = JSON.stringify(userInfo);
           message.success(res.data.message, 1);
           this.handleLoginCancel();
           // 跳转到之前授权前的页面
-          const href = window.localStorage.preventHref
-          if(href){
-            window.location.href = href 
+          let preventHistory = JSON.parse(window.sessionStorage.preventHistory);
+          // console.log('preventHistory :', preventHistory);
+          if (preventHistory) {
+            this.props.history.push({
+              pathname: preventHistory.pathname,
+              search: preventHistory.search,
+            });
           }
         } else {
           this.props.loginFailure(res.data.message);
@@ -168,6 +179,9 @@ class Nav extends Component {
         }
       })
       .catch(err => {
+        this.setState({
+          isLoading: false,
+        });
         console.log(err);
       });
   }
@@ -221,6 +235,7 @@ class Nav extends Component {
     if (window.sessionStorage.userInfo) {
       userInfo = JSON.parse(window.sessionStorage.userInfo);
     }
+
     return (
       <div className="left">
         {this.state.isMobile ? (
@@ -351,7 +366,14 @@ class Nav extends Component {
                     <SubMenu
                       title={
                         <span className="submenu-title-wrapper">
-                          <Icon type="user" /> {userInfo.name}
+                          <Avatar
+                            onClick={this.showDrawer}
+                            size="large"
+                            icon="user"
+                            src={userInfo.avatar}
+                            style={{ marginRight: 5 }}
+                          />
+                          {userInfo.name}
                         </span>
                       }
                     >
@@ -451,9 +473,13 @@ class Nav extends Component {
           visible={this.state.register}
           handleCancel={this.handleRegisterCancel}
         />
+        {this.state.isLoading ? (<div style={{marginTop: 100}}>
+          <LoadingCom /> 
+        </div>)
+         : ''}
       </div>
     );
   }
 }
 
-export default Nav;
+export default withRouter(Nav);

@@ -42,6 +42,7 @@ class Login extends Component {
           let userInfo = {
             _id: res.data.data._id,
             name: res.data.data.name,
+            avatar: res.data.data.avatar,
           };
           window.sessionStorage.userInfo = JSON.stringify(userInfo);
           message.success(res.data.message, 1);
@@ -72,13 +73,17 @@ class Login extends Component {
     } else {
       this.login(this.state);
     }
-	}
-	handleOAuth(){
-    // 保存授权前的页面链接
-    window.localStorage.preventHref = window.location.href
-		// window.location.href = 'https://github.com/login/oauth/authorize?client_id=6de90ab270aea2bdb01c&redirect_uri=http://biaochenxuying.cn/login'
-		window.location.href = `${config.oauth_uri}?client_id=${config.client_id}&redirect_uri=${config.redirect_uri}`
-	}
+  }
+  handleOAuth() {
+    // 保存授权前的页面链接内容
+    let preventHistory = {
+      pathname: window.location.pathname,
+      search: window.location.search,
+    };
+    window.sessionStorage.preventHistory = JSON.stringify(preventHistory);
+    // window.location.href = 'https://github.com/login/oauth/authorize?client_id=6de90ab270aea2bdb01c&redirect_uri=http://biaochenxuying.cn/login'
+    window.location.href = `${config.oauth_uri}?client_id=${config.client_id}&redirect_uri=${config.redirect_uri}`;
+  }
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value,
@@ -115,16 +120,13 @@ class Login extends Component {
         </div>
         <div className="login-submit">
           <Button
-            style={{ width: '100%', marginBottom : '20px' }}
+            style={{ width: '100%', marginBottom: '20px' }}
             type="primary"
             onClick={this.handleOk}
           >
             登录
           </Button>
-          <Button
-            style={{ width: '100%' }}
-            onClick={this.handleOAuth}
-          >
+          <Button style={{ width: '100%' }} onClick={this.handleOAuth}>
             github 授权登录
           </Button>
         </div>
