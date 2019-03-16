@@ -280,6 +280,6 @@ npm run build 或者 yarn run build
 
 欢迎关注公众号，并回复 **福利** 可领取免费学习资料，福利详情请猛戳：  [免费资源获取--Python、Java、Linux、Go、node、vue、react、javaScript](https://mp.weixin.qq.com/s?__biz=MzA4MDU1MDExMg==&mid=2247483711&idx=1&sn=1ffb576159805e92fc57f5f1120fce3a&chksm=9fa3c0b0a8d449a664f36f6fdd017ac7da71b6a71c90261b06b4ea69b42359255f02d0ffe7b3&token=1560489745&lang=zh_CN#rd)
 
-![](https://upload-images.jianshu.io/upload_images/12890819-0fc16a9e50276521.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![BiaoChenXuYing](https://upload-images.jianshu.io/upload_images/12890819-1921c40c1e9c39ab.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
 
