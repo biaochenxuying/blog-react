@@ -11,22 +11,13 @@ class Layouts extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // isMobile: false,
       isShowSlider: false,
     };
-    // console.log(this.props);
-    // console.log('pathName:', this.props.location.pathname);
-  }
-  componentDidMount() {
-    // window.onresize = function() {
-    //   window.location.reload();
-    // };
   }
 
   render() {
     let isShowSlider = false;
     let pathName = this.props.location.pathname;
-    // console.log("pathName",pathName);
     if (
       pathName !== '/articleDetail' &&
       pathName !== '/about' &&

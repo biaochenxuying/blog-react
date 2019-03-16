@@ -1,37 +1,33 @@
 // url的链接
 export const urls = {
-    login: "login",
-    logout: "logout",
-    register: "register",
-    getUser: "getUser",
+  login: 'login',
+  logout: 'logout',
+  register: 'register',
+  getUser: 'getUser',
 
-    addComment: 'addComment',
-    addThirdComment: 'addThirdComment',
-    getCommentList: 'getCommentList',
+  addComment: 'addComment',
+  addThirdComment: 'addThirdComment',
+  getCommentList: 'getCommentList',
 
-    getArticleList: 'getArticleList',
-    likeArticle: 'likeArticle',
-    getArticleDetail: 'getArticleDetail',
+  getArticleList: 'getArticleList',
+  likeArticle: 'likeArticle',
+  getArticleDetail: 'getArticleDetail',
 
-    addMessage: 'addMessage',
-    getMessageList: 'getMessageList',
-    getMessageDetail: 'getMessageDetail',
+  addMessage: 'addMessage',
+  getMessageList: 'getMessageList',
+  getMessageDetail: 'getMessageDetail',
 
-    getLinkList: 'getLinkList',
-    
-    getTagList: 'getTagList',
+  getLinkList: 'getLinkList',
 
-    getCategoryList: 'getCategoryList',
+  getTagList: 'getTagList',
 
-    getTimeAxisList: 'getTimeAxisList',
-    getTimeAxisDetail: 'getTimeAxisDetail',
+  getCategoryList: 'getCategoryList',
 
-    getProjectList: 'getProjectList',
-    getProjectDetail: 'getProjectDetail',
+  getTimeAxisList: 'getTimeAxisList',
+  getTimeAxisDetail: 'getTimeAxisDetail',
 
-  };
-  
-  export default urls;
-  
-  
-  
+  getProjectList: 'getProjectList',
+  getProjectDetail: 'getProjectDetail',
+};
+
+export default urls;

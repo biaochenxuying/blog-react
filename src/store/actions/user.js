@@ -1,4 +1,10 @@
-import * as types from '../types.js'
+import {
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
+  REGISTER_SUCCESS,
+  REGISTER_FAILURE,
+  LOGOUT,
+} from '../types.js';
 
 /**
  * action type
@@ -6,34 +12,34 @@ import * as types from '../types.js'
 
 export function loginSuccess(data) {
   return {
-    type: types.LOGIN_SUCCESS,
-    payload: data
-  }
+    type: LOGIN_SUCCESS,
+    payload: data,
+  };
 }
 
 export function loginFailure(data) {
   return {
-    type: types.LOGIN_FAILURE,
-    payload: data
-  }
+    type: LOGIN_FAILURE,
+    payload: data,
+  };
 }
 
 export function registerSuccess(data) {
   return {
-    type: types.REGISTER_SUCCESS,
-    payload: data
-  }
+    type: REGISTER_SUCCESS,
+    payload: data,
+  };
 }
 
 export function registerFailue(data) {
   return {
-    type: types.REGISTER_FAILURE,
-    payload: data
-  }
+    type: REGISTER_FAILURE,
+    payload: data,
+  };
 }
 
 export function logout() {
   return {
-    type: types.LOGOUT
-  }
+    type: LOGOUT,
+  };
 }

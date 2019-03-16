@@ -1,8 +1,6 @@
 import './index.less';
-// import logo from '../../assets/userLogo.jpeg';
 import React, { Component } from 'react';
 import { Avatar, Input } from 'antd';
-// import https from '../../utils/https';
 
 const { TextArea } = Input;
 
@@ -28,7 +26,7 @@ class Comment extends Component {
     }
     return (
       <div className="comment">
-        <div className="avatar" >
+        <div className="avatar">
           <Avatar
             className="auth-logo"
             size={50}
@@ -59,9 +57,7 @@ class Comment extends Component {
               发送
             </div>
           )}
-          <div className="cancel">
-            取消
-          </div>
+          <div className="cancel">取消</div>
         </div>
       </div>
     );

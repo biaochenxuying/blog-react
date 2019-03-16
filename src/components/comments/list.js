@@ -1,5 +1,4 @@
 import './index.less';
-// import logo from '../../assets/userLogo.jpeg';
 import React, { Component } from 'react';
 import { message, Avatar, Spin } from 'antd';
 import https from '../../utils/https';
@@ -135,7 +134,6 @@ class CommentList extends Component {
   }
 
   render() {
-    // console.log('list', this.props);
     const list = this.props.list.map(item => (
       <ReactCSSTransitionGroup
         key={item.id}
@@ -169,7 +167,10 @@ class CommentList extends Component {
             {/* <div className="like" >
 							<Avatar size="small" icon="like" /> 赞
 						</div> */}
-            <div onClick={() => this.showCommentModal(item)} className="message">
+            <div
+              onClick={() => this.showCommentModal(item)}
+              className="message"
+            >
               <Avatar size="small" icon="message" /> 回复
             </div>
           </div>
@@ -178,7 +179,7 @@ class CommentList extends Component {
               <div key={e._id} className="item-other">
                 <div className="item-header">
                   <div className="author">
-                    <div className="avator" >
+                    <div className="avator">
                       <Avatar size="large" icon="user" src={e.user.avatar} />
                     </div>
                   </div>
@@ -202,7 +203,7 @@ class CommentList extends Component {
                   {/* <a className="like">
 										<Avatar size="small" icon="like" /> 赞
 									</a> */}
-                  <div 
+                  <div
                     onClick={() => this.showCommentModal(item, e)}
                     className="message"
                   >

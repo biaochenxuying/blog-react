@@ -45,7 +45,7 @@ class Nav extends Component {
       nav: '首页',
       navTitle: '首页',
       code: '',
-      isLoading: false
+      isLoading: false,
     };
     this.menuClick = this.menuClick.bind(this);
     this.showLoginModal = this.showLoginModal.bind(this);
@@ -65,7 +65,6 @@ class Nav extends Component {
         isMobile: true,
       });
     }
-    // console.log('code :', getQueryStringByName('code'));
     const code = getQueryStringByName('code');
     if (code) {
       this.setState(
@@ -81,8 +80,6 @@ class Nav extends Component {
       );
     }
     this.initMenu(this.props.pathname);
-    // this.props.history.push('/message')
-    // this.props.history.push({ pathname:'/message', search:'?sort=name'})
   }
 
   showDrawer = () => {
@@ -124,6 +121,9 @@ class Nav extends Component {
     } else if (name === '/project') {
       key = '7';
       navTitle = '项目';
+    } else if (name === '/archive') {
+      key = '8';
+      navTitle = '归档';
     }
     this.setState({
       navTitle,
@@ -132,15 +132,13 @@ class Nav extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    // console.log('next :', nextProps);
     this.initMenu(nextProps.pathname);
   }
-  // componentDidUpdate(nextProps){}
 
   getUser(code) {
     this.setState({
-			isLoading: true,
-		});
+      isLoading: true,
+    });
     https
       .post(
         urls.getUser,
@@ -165,7 +163,6 @@ class Nav extends Component {
           this.handleLoginCancel();
           // 跳转到之前授权前的页面
           let preventHistory = JSON.parse(window.sessionStorage.preventHistory);
-          // console.log('preventHistory :', preventHistory);
           if (preventHistory) {
             this.props.history.push({
               pathname: preventHistory.pathname,
@@ -193,7 +190,6 @@ class Nav extends Component {
   };
 
   handleLogout = e => {
-    // console.log('click ', e);
     this.setState({
       current: e.key,
     });
@@ -203,7 +199,6 @@ class Nav extends Component {
 
   showLoginModal() {
     this.onClose();
-    // [event.target.name]: event.target.value
     this.setState({
       login: true,
     });
@@ -264,7 +259,6 @@ class Nav extends Component {
               </Col>
               <Col style={{ textAlign: 'right', width: '25%', float: 'left' }}>
                 <div>
-                  {/* <a className='user-name'>{userInfo.name}</a> */}
                   <Icon
                     type="bars"
                     onClick={this.showDrawer}
@@ -322,9 +316,15 @@ class Nav extends Component {
                       热门
                     </Link>
                   </Menu.Item>
+                  <Menu.Item key="8">
+                    <Link to="/archive">
+                      <Icon type="project" theme="outlined" />
+                      归档
+                    </Link>
+                  </Menu.Item>
                   <Menu.Item key="7">
                     <Link to="/project">
-                      <Icon type="project" theme="outlined" />
+                      <Icon type="database" theme="outlined" />
                       项目
                     </Link>
                   </Menu.Item>
@@ -472,10 +472,13 @@ class Nav extends Component {
           visible={this.state.register}
           handleCancel={this.handleRegisterCancel}
         />
-        {this.state.isLoading ? (<div style={{marginTop: 100}}>
-          <LoadingCom /> 
-        </div>)
-         : ''}
+        {this.state.isLoading ? (
+          <div style={{ marginTop: 100 }}>
+            <LoadingCom />
+          </div>
+        ) : (
+          ''
+        )}
       </div>
     );
   }

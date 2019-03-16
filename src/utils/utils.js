@@ -1,4 +1,3 @@
-
 // fn是我们需要包装的事件回调, delay是时间间隔的阈值
 export function throttle(fn, delay) {
   // last为上一次触发回调的时间, timer是定时器

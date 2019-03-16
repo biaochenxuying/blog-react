@@ -99,7 +99,6 @@ class Articles extends Component {
   }
 
   componentDidMount() {
-    // console.log('location.pathname', this.props.location.pathname);
     if (this.props.location.pathname === '/hot') {
       this.setState(
         {
@@ -145,7 +144,6 @@ class Articles extends Component {
         { withCredentials: true },
       )
       .then(res => {
-        // console.log(res);
         let num = this.state.pageNum;
         if (res.status === 200 && res.data.code === 0) {
           this.setState(preState => ({
@@ -169,7 +167,6 @@ class Articles extends Component {
   }
 
   render() {
-    // console.log('blog articlesList:', this.props.articlesList);
     const list = this.state.articlesList.map((item, i) => (
       <ReactCSSTransitionGroup
         key={item._id}
@@ -180,7 +177,7 @@ class Articles extends Component {
         transitionLeaveTimeout={1000}
       >
         <li key={item._id} className="have-img">
-          <a className="wrap-img" href="/" target="_blank" >
+          <a className="wrap-img" href="/" target="_blank">
             <img
               className="img-blur-done"
               data-src={item.img_url}
