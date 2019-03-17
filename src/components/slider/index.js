@@ -1,7 +1,8 @@
 import './index.less';
 import logo from '../../assets/userLogo.jpeg';
+import BiaoChenXuYing from '../../assets/BiaoChenXuYing.png';
 import React, { Component } from 'react';
-import { Icon, Avatar, message } from 'antd';
+import { Avatar, message } from 'antd';
 import { Link } from 'react-router-dom';
 import https from '../../utils/https';
 import urls from '../../utils/urls';
@@ -20,36 +21,36 @@ class SliderRight extends Component {
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
-    this.loadLink = this.loadLink.bind(this);
+    // this.loadLink = this.loadLink.bind(this);
   }
 
   componentDidMount() {
     this.handleSearch();
-    this.loadLink();
+    // this.loadLink();
   }
-  loadLink = () => {
-    https
-      .get(urls.getLinkList, {
-        params: {
-          type: this.state.type,
-          keyword: this.state.keyword,
-          pageNum: this.state.pageNum,
-          pageSize: this.state.pageSize,
-        },
-      })
-      .then(res => {
-        if (res.status === 200 && res.data.code === 0) {
-          this.setState({
-            linkList: res.data.data.list,
-          });
-        } else {
-          message.error(res.data.message);
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
+  // loadLink = () => {
+  //   https
+  //     .get(urls.getLinkList, {
+  //       params: {
+  //         type: this.state.type,
+  //         keyword: this.state.keyword,
+  //         pageNum: this.state.pageNum,
+  //         pageSize: this.state.pageSize,
+  //       },
+  //     })
+  //     .then(res => {
+  //       if (res.status === 200 && res.data.code === 0) {
+  //         this.setState({
+  //           linkList: res.data.data.list,
+  //         });
+  //       } else {
+  //         message.error(res.data.message);
+  //       }
+  //     })
+  //     .catch(err => {
+  //       console.log(err);
+  //     });
+  // };
 
   handleSearch = () => {
     https
@@ -89,21 +90,21 @@ class SliderRight extends Component {
         <span key={item._id}>{item.name}</span>
       </Link>
     ));
-    const linkChildren = this.state.linkList.map(item => (
-      <a
-        key={item._id}
-        target="_blank"
-        rel="noopener noreferrer"
-        href={item.url}
-      >
-        <Icon
-          key={item._id}
-          type={item.icon}
-          theme="outlined"
-          style={{ fontSize: '20px', marginRight: '10px' }}
-        />
-      </a>
-    ));
+    // const linkChildren = this.state.linkList.map(item => (
+    //   <a
+    //     key={item._id}
+    //     target="_blank"
+    //     rel="noopener noreferrer"
+    //     href={item.url}
+    //   >
+    //     <Icon
+    //       key={item._id}
+    //       type={item.icon}
+    //       theme="outlined"
+    //       style={{ fontSize: '20px', marginRight: '10px' }}
+    //     />
+    //   </a>
+    // ));
 
     return (
       <div className="right">
@@ -121,20 +122,20 @@ class SliderRight extends Component {
 					</div>
 					<div className="item">
 						<div className="num">123</div>收获喜欢<Icon type="right" theme="outlined" />
-					</div> */}
-        </div>
-        <div className="introduce">
-          <div className="title">个人介绍</div>
-          <div className="content">
-            加班到天明，学习到昏厥 ！！！ <br /> 微信公众号：【 BiaoChenXuYing
-            】 <br /> 分享 WEB
-            全栈开发等相关的技术文章，热点资源，全栈程序员的成长之路。
-          </div>
-          <div className="footer">{linkChildren}</div>
+          </div> */}
+          {/* <div className="footer">{linkChildren}</div> */}
         </div>
         <div className="tags">
           <div className="title">标签云</div>
           {list}
+        </div>
+        <div className="introduce">
+          <div className="title">本站公众号</div>
+          <div className="content">
+            分享 WEB 全栈开发等相关的技术文章，热点资源<br />
+            全栈程序员的成长之路
+            <img style={{'width':'100%',marginTop: '20px'}} src={BiaoChenXuYing} alt="公众号" />
+          </div>
         </div>
       </div>
     );

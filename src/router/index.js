@@ -18,14 +18,14 @@ let config = [
     path: '/',
     exact: true,
     component: Loadable({
-      loader: () => import('../components/articles/articles.js'),
+      loader: () => import('../components/home/index.js'),
       loading: loadingComponent,
       delay: 300,
     }),
   },
   {
-    name: 'home',
-    path: '/home',
+    name: 'articles',
+    path: '/articles',
     exact: true,
     component: Loadable({
       loader: () => import('../components/articles/articles.js'),

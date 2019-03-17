@@ -95,14 +95,14 @@ class Nav extends Component {
   };
 
   initMenu(name) {
-    let key = '1';
+    let key = '9';
     let navTitle = '';
     if (name === '/') {
-      key = '1';
+      key = '9';
       navTitle = '首页';
-    } else if (name === '/home') {
+    } else if (name === '/articles') {
       key = '1';
-      navTitle = '首页';
+      navTitle = '文章';
     } else if (name === '/hot') {
       key = '2';
       navTitle = '热门';
@@ -304,10 +304,16 @@ class Nav extends Component {
                   selectedKeys={[this.state.menuCurrent]}
                   style={{ lineHeight: '64px', borderBottom: 'none' }}
                 >
-                  <Menu.Item key="1">
-                    <Link to="/home">
+                  <Menu.Item key="9">
+                    <Link to="/">
                       <Icon type="home" theme="outlined" />
                       首页
+                    </Link>
+                  </Menu.Item>
+                  <Menu.Item key="1">
+                    <Link to="/articles">
+                      <Icon type="ordered-list" theme="outlined" />
+                      文章
                     </Link>
                   </Menu.Item>
                   <Menu.Item key="2">
@@ -411,17 +417,27 @@ class Nav extends Component {
           closable={false}
           onClose={this.onClose}
           visible={this.state.visible}
-          height={335}
+          height={420}
         >
           <div className="drawer">
             <p onClick={this.onClose}>
-              <Link to="/home">
+              <Link to="/">
                 <Icon type="home" /> 首页
+              </Link>
+            </p>
+            <p onClick={this.onClose}>
+              <Link to="/articles">
+                <Icon type="ordered-list" /> 文章
               </Link>
             </p>
             <p onClick={this.onClose}>
               <Link to="/hot">
                 <Icon type="fire" onClick={this.showLoginModal} /> 热门
+              </Link>
+            </p>
+            <p onClick={this.onClose}>
+              <Link to="/archive">
+                <Icon type="project" onClick={this.showLoginModal} /> 归档
               </Link>
             </p>
             <p onClick={this.onClose}>
