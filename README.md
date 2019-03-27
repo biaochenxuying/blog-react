@@ -18,7 +18,7 @@
 ![mobile.gif](https://upload-images.jianshu.io/upload_images/12890819-f97e98dfa9ac76b8.gif?imageMogr2/auto-orient/strip)
 
 
-完整效果请看：[http://biaochenxuying.cn/main.html](http://biaochenxuying.cn/main.html)
+完整效果请看：[https://biaochenxuying.cn](https://biaochenxuying.cn)
 
 # 2. 功能描述
 
@@ -36,13 +36,14 @@
 - [x] 发文（支持 MarkDown 语法）  
 - [x] 文章详情展示（支持代码语法高亮）
 - [X] 移动端适配
-- [X] 网站波浪效果(请看 http://biaochenxuying.cn/wave.html)
+- [X] 网站波浪效果(请看 https://biaochenxuying.cn/wave.html)
 - [X] 第三方 github 授权登录
 - [X] 文章归档
+- [X] 文章详情的目录
 
 ## 2.2 待实现功能
 
-- [ ] 文章详情的目录
+- [ ] 无
 
 # 3. 前端技术 
 
@@ -245,7 +246,7 @@ npm run build 或者 yarn run build
 
 如果要看完整的效果，是要和后台项目  **[blog-node](https://github.com/biaochenxuying/blog-node)** 一起运行才行的，不然接口请求会失败。
 
-虽然引入了 mock 了，但是还没有时间做模拟数据，想看具体效果，请稳步到我的网站上查看 [http://biaochenxuying.cn/main.html](http://biaochenxuying.cn/main.html)
+虽然引入了 mock 了，但是还没有时间做模拟数据，想看具体效果，请稳步到我的网站上查看 [https://biaochenxuying.cn/main.html](https://biaochenxuying.cn/main.html)
 
 # 9. 项目地址与文档教程
 
@@ -262,12 +263,12 @@ npm run build 或者 yarn run build
 
 **本博客系统的系列文章：**
 
-- 1. [react + node + express + ant + mongodb 的简洁兼时尚的博客网站](http://biaochenxuying.cn/articleDetail?article_id=5bf57a8f85e0f13af26e579b)
-- 2. [react + Ant Design + 支持 markdown 的 blog-react 项目文档说明](http://biaochenxuying.cn/articleDetail?article_id=5bf6bb5e85e0f13af26e57b7)
-- 3. [基于 node + express + mongodb 的 blog-node 项目文档说明](http://biaochenxuying.cn/articleDetail?article_id=5bf8c57185e0f13af26e7d0d)
-- 4. [服务器小白的我,是如何将node+mongodb项目部署在服务器上并进行性能优化的](http://biaochenxuying.cn/articleDetail?article_id=5bfa728bb54f044b4f9da240)
-- 5. [github 授权登录教程与如何设计第三方授权登录的用户表](http://biaochenxuying.cn/articleDetail?article_id=5c7bd34e42b55e2ecc90976d)
-- 6. [一次网站的性能优化之路 -- 天下武功，唯快不破](http://biaochenxuying.cn/articleDetail?article_id=5c8ca2d3b87b8a04f1860c9a)
+- 1. [react + node + express + ant + mongodb 的简洁兼时尚的博客网站](https://biaochenxuying.cn/articleDetail?article_id=5bf57a8f85e0f13af26e579b)
+- 2. [react + Ant Design + 支持 markdown 的 blog-react 项目文档说明](https://biaochenxuying.cn/articleDetail?article_id=5bf6bb5e85e0f13af26e57b7)
+- 3. [基于 node + express + mongodb 的 blog-node 项目文档说明](https://biaochenxuying.cn/articleDetail?article_id=5bf8c57185e0f13af26e7d0d)
+- 4. [服务器小白的我,是如何将node+mongodb项目部署在服务器上并进行性能优化的](https://biaochenxuying.cn/articleDetail?article_id=5bfa728bb54f044b4f9da240)
+- 5. [github 授权登录教程与如何设计第三方授权登录的用户表](https://biaochenxuying.cn/articleDetail?article_id=5c7bd34e42b55e2ecc90976d)
+- 6. [一次网站的性能优化之路 -- 天下武功，唯快不破](https://biaochenxuying.cn/articleDetail?article_id=5c8ca2d3b87b8a04f1860c9a)
 
 
 

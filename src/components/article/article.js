@@ -8,8 +8,7 @@ import { Icon, Avatar, message, Button } from 'antd';
 import https from '../../utils/https';
 import urls from '../../utils/urls';
 import LoadingCom from '../loading/loading';
-import marked from 'marked';
-import hljs from 'highlight.js';
+import markdown from '../../utils/markdown.js';
 import { getQueryStringByName, timestampToTime } from '../../utils/utils';
 
 class Articles extends Component {
@@ -167,9 +166,17 @@ class Articles extends Component {
       )
       .then(res => {
         if (res.status === 200 && res.data.code === 0) {
-          this.setState({
-            articleDetail: res.data.data,
-            isLoading: false,
+          const detail = res.data.data;
+          const article = markdown.marked(res.data.data.content);
+          // console.log("this.articleDetail :", this.articleDetail.tags);
+          article.then(response => {
+            detail.content = response.content;
+            detail.toc = response.toc;
+            // console.log('detail.toc :', detail);
+            this.setState({
+              articleDetail: detail,
+              isLoading: false,
+            });
           });
           let keyword = res.data.data.keyword.join(',');
           let description = res.data.data.desc;
@@ -216,21 +223,6 @@ class Articles extends Component {
       let article_id = getQueryStringByName('article_id');
       this.handleSearch(article_id);
     }
-
-    // marked相关配置
-    marked.setOptions({
-      renderer: new marked.Renderer(),
-      gfm: true,
-      tables: true,
-      breaks: true,
-      pedantic: false,
-      sanitize: true,
-      smartLists: true,
-      smartypants: false,
-      highlight: function(code) {
-        return hljs.highlightAuto(code).value;
-      },
-    });
   }
 
   render() {
@@ -241,87 +233,103 @@ class Articles extends Component {
     ));
 
     return (
-      <div className="article">
-        <div className="header">
-          <div className="title">{this.state.articleDetail.title}</div>
-          <div className="author">
-            <div className="avatar">
-              <Avatar className="auth-logo" src={logo} size={50} icon="user" />
-            </div>{' '}
-            <div className="info">
-              <span className="name">
-                <span>{this.state.articleDetail.author}</span>
-              </span>
-              <div
-                props-data-classes="user-follow-button-header"
-                data-author-follow-button=""
-              />
-              <div className="meta">
-                <span className="publish-time">
-                  {this.state.articleDetail.create_time
-                    ? timestampToTime(
-                        this.state.articleDetail.create_time,
-                        true,
-                      )
-                    : ''}
+      <div className="article clearfix">
+        <div className="detail fl" style={{ width: '75%' }}>
+          <div className="header">
+            <div className="title">{this.state.articleDetail.title}</div>
+            <div className="author">
+              <div className="avatar">
+                <Avatar
+                  className="auth-logo"
+                  src={logo}
+                  size={50}
+                  icon="user"
+                />
+              </div>{' '}
+              <div className="info">
+                <span className="name">
+                  <span>{this.state.articleDetail.author}</span>
                 </span>
-                <span className="wordage">
-                  字数 {this.state.articleDetail.numbers}
-                </span>
-                <span className="views-count">
-                  阅读 {this.state.articleDetail.meta.views}
-                </span>
-                <span className="comments-count">
-                  评论 {this.state.articleDetail.meta.comments}
-                </span>
-                <span className="likes-count">
-                  喜欢 {this.state.articleDetail.meta.likes}
-                </span>
+                <div
+                  props-data-classes="user-follow-button-header"
+                  data-author-follow-button=""
+                />
+                <div className="meta">
+                  <span className="publish-time">
+                    {this.state.articleDetail.create_time
+                      ? timestampToTime(
+                          this.state.articleDetail.create_time,
+                          true,
+                        )
+                      : ''}
+                  </span>
+                  <span className="wordage">
+                    字数 {this.state.articleDetail.numbers}
+                  </span>
+                  <span className="views-count">
+                    阅读 {this.state.articleDetail.meta.views}
+                  </span>
+                  <span className="comments-count">
+                    评论 {this.state.articleDetail.meta.comments}
+                  </span>
+                  <span className="likes-count">
+                    喜欢 {this.state.articleDetail.meta.likes}
+                  </span>
+                </div>
               </div>
+              <div className="tags " title="标签">
+                <Icon type="tags" theme="outlined" />
+                {list}
+              </div>
+              <span className="clearfix" />
             </div>
-            <div className="tags " title="标签">
-              <Icon type="tags" theme="outlined" />
-              {list}
-            </div>
-            <span className="clearfix" />
           </div>
-        </div>
 
-        {this.state.isLoading ? <LoadingCom /> : ''}
+          {this.state.isLoading ? <LoadingCom /> : ''}
 
-        <div className="content">
-          <div
-            id="content"
-            className="article-detail"
-            dangerouslySetInnerHTML={{
-              __html: this.state.articleDetail.content
-                ? marked(this.state.articleDetail.content)
-                : null,
-            }}
+          <div className="content">
+            <div
+              id="content"
+              className="article-detail"
+              dangerouslySetInnerHTML={{
+                __html: this.state.articleDetail.content
+                  ? this.state.articleDetail.content
+                  : null,
+              }}
+            />
+          </div>
+          <div className="heart">
+            <Button
+              type="danger"
+              size="large"
+              icon="heart"
+              loading={this.state.isLoading}
+              onClick={this.likeArticle}
+            >
+              点赞
+            </Button>
+          </div>
+          <Comment
+            content={this.state.content}
+            isSubmitLoading={this.state.isSubmitLoading}
+            handleChange={this.handleChange}
+            handleAddComment={this.handleAddComment}
+          />
+          <CommentList
+            numbers={this.state.articleDetail.meta.comments}
+            list={this.state.articleDetail.comments}
+            article_id={this.state.articleDetail._id}
+            refreshArticle={this.refreshArticle}
           />
         </div>
-        <div className="heart">
-          <Button
-            type="danger"
-            size="large"
-            icon="heart"
-            loading={this.state.isLoading}
-            onClick={this.likeArticle}
-          >
-            点赞
-          </Button>
-        </div>
-        <Comment
-          content={this.state.content}
-          isSubmitLoading={this.state.isSubmitLoading}
-          handleChange={this.handleChange}
-          handleAddComment={this.handleAddComment}
-        />
-        <CommentList
-          numbers={this.state.articleDetail.meta.comments}
-          list={this.state.articleDetail.comments}
-          article_id={this.state.articleDetail._id}
-          refreshArticle={this.refreshArticle}
+        <div
+          style={{ width: '23%' }}
+          className="article-right fr anchor"
+          dangerouslySetInnerHTML={{
+            __html: this.state.articleDetail.toc
+              ? this.state.articleDetail.toc
+              : null,
+          }}
         />
       </div>
     );

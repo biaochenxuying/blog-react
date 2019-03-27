@@ -10,11 +10,11 @@
     <meta name="theme-color" content="#000000" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
-    <link
+    <!-- <link
       href="http://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css"
       rel="stylesheet"
-    />
-    <!-- <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"> -->
+    /> -->
+    <link rel="stylesheet" href="./css/monokai_sublime.css" />
     <title id="title">BiaoChenXuYing 的个人博客网站</title>
     <meta name="baidu-site-verification" content="7XGPmF2RtW" />
     <meta id="keywords" name="keywords" content="BiaoChenXuYing 的博客网站" />
@@ -37,15 +37,5 @@
     document.getElementsByTagName('html')[0].style.fontSize =
       window.screen.width / 7.5 + 'px';
     // 如上：通过查询屏幕宽度，动态的设置 html 的 font-size 值，设计稿大多以 750*1334 设置的，通过上述换算后，在设计图上一张 150*150 px 的图，在 css 中对应的 rem 值则为：1.5*1.5 rem
-  </script>
-  <script>
-    // 百度统计代码
-    var _hmt = _hmt || [];
-    (function() {
-      var hm = document.createElement('script');
-      hm.src = 'https://hm.baidu.com/hm.js?e75c184727a975aa58adf4acc4123de8';
-      var s = document.getElementsByTagName('script')[0];
-      s.parentNode.insertBefore(hm, s);
-    })();
   </script>
 </html>

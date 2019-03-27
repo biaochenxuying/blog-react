@@ -1202,27 +1202,46 @@ class Index extends Component {
       canvas.height = fullh;
     }
 
-    window.addEventListener('load', function(e) {
-      var canvas = document.getElementById('sakura');
-      try {
-        makeCanvasFullScreen(canvas);
-        gl = canvas.getContext('experimental-webgl');
-      } catch (e) {
-        alert('WebGL not supported.' + e);
-        console.error(e);
-        return;
-      }
+    // window.addEventListener('load', function(e) {
+    //   var canvas = document.getElementById('sakura');
+    //   try {
+    //     makeCanvasFullScreen(canvas);
+    //     gl = canvas.getContext('experimental-webgl');
+    //   } catch (e) {
+    //     alert('WebGL not supported.' + e);
+    //     console.error(e);
+    //     return;
+    //   }
 
-      window.addEventListener('resize', onResize);
+    //   window.addEventListener('resize', onResize);
 
-      setViewports();
-      createScene();
-      initScene();
+    //   setViewports();
+    //   createScene();
+    //   initScene();
 
-      timeInfo.start = new Date();
-      timeInfo.prev = timeInfo.start;
-      animate();
-    });
+    //   timeInfo.start = new Date();
+    //   timeInfo.prev = timeInfo.start;
+    //   animate();
+    // });
+    var canvas = document.getElementById('sakura');
+    try {
+      makeCanvasFullScreen(canvas);
+      gl = canvas.getContext('experimental-webgl');
+    } catch (e) {
+      alert('WebGL not supported.' + e);
+      console.error(e);
+      return;
+    }
+
+    window.addEventListener('resize', onResize);
+
+    setViewports();
+    createScene();
+    initScene();
+
+    timeInfo.start = new Date();
+    timeInfo.prev = timeInfo.start;
+    animate();
 
     //set window.requestAnimationFrame
     (function(w, r) {
