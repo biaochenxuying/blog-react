@@ -9,12 +9,17 @@ import https from '../../utils/https';
 import urls from '../../utils/urls';
 import LoadingCom from '../loading/loading';
 import markdown from '../../utils/markdown.js';
-import { getQueryStringByName, timestampToTime } from '../../utils/utils';
+import {
+  getQueryStringByName,
+  timestampToTime,
+  isMobileOrPc,
+} from '../../utils/utils';
 
 class Articles extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      isMobile: isMobileOrPc(),
       isLoading: false,
       isSubmitLoading: false,
       list: [],
@@ -226,6 +231,8 @@ class Articles extends Component {
   }
 
   render() {
+    console.log('isMobile :', this.state.isMobile);
+    let width = this.state.isMobile ? '100%' : '75%';
     const list = this.state.articleDetail.tags.map((item, i) => (
       <span key={item.id} className="tag">
         {item.name}
@@ -234,7 +241,7 @@ class Articles extends Component {
 
     return (
       <div className="article clearfix">
-        <div className="detail fl" style={{ width: '75%' }}>
+        <div className="detail fl" style={{ width: width }}>
           <div className="header">
             <div className="title">{this.state.articleDetail.title}</div>
             <div className="author">
@@ -322,15 +329,19 @@ class Articles extends Component {
             refreshArticle={this.refreshArticle}
           />
         </div>
-        <div
-          style={{ width: '23%' }}
-          className="article-right fr anchor"
-          dangerouslySetInnerHTML={{
-            __html: this.state.articleDetail.toc
-              ? this.state.articleDetail.toc
-              : null,
-          }}
-        />
+        {!this.state.isMobile ? (
+          <div
+            style={{ width: '23%' }}
+            className="article-right fr anchor"
+            dangerouslySetInnerHTML={{
+              __html: this.state.articleDetail.toc
+                ? this.state.articleDetail.toc
+                : null,
+            }}
+          />
+        ) : (
+          ''
+        )}
       </div>
     );
   }
