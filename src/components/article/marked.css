@@ -34,8 +34,10 @@ p > code:not([class]) {
   background-color: #f9f2f4;
   border-radius: 4px;
 }
-
-p img {
+img {
+  max-width: 100%;
+}
+.article img {
   /* 图片居中 */
   display: flex;
   max-width: 100%;
