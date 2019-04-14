@@ -37,23 +37,23 @@ p > code:not([class]) {
 img {
   max-width: 100%;
 }
-.article img {
+.article-detail img {
   /* 图片居中 */
   display: flex;
   max-width: 100%;
   margin: 0 auto;
 }
 
-.article table {
+.article-detail table {
   text-align: center;
   border: 1px solid #eee;
   margin-bottom: 1.5em;
 }
-.article th,
-.article td {
+.article-detail th,
+.article-detail td {
   padding: 0.5em;
 }
-.article tr:nth-child(2n) {
+.article-detail tr:nth-child(2n) {
   background: #f7f7f7;
 }
 
