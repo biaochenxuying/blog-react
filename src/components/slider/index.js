@@ -85,7 +85,7 @@ class SliderRight extends Component {
       <Link
         className="item"
         key={item._id}
-        to={`/home?tag_id=${item._id}&tag_name=${item.name}&category_id=`}
+        to={`/articles?tag_id=${item._id}&tag_name=${item.name}&category_id=`}
       >
         <span key={item._id}>{item.name}</span>
       </Link>
