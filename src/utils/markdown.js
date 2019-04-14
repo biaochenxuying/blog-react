@@ -1,8 +1,8 @@
 // https://www.cherylgood.cn/detail/5bdaf4722382b4646c27143b.html
-const highlight = require('highlight.js');
-const marked = require('marked');
+const highlight = require("highlight.js");
+const marked = require("marked");
 const tocObj = {
-  add: function(text, level) {
+  add: function (text, level) {
     var anchor = `#toc${level}${++this.index}`;
     this.toc.push({ anchor: anchor, level: level, text: text });
     return anchor;
@@ -15,21 +15,21 @@ const tocObj = {
   //   </ul>
   //   <li></li>
   // </ul>
-  toHTML: function() {
+  toHTML: function () {
     let levelStack = [];
-    let result = '';
+    let result = "";
     const addStartUL = () => {
       result += '<ul class="anchor-ul" id="anchor-fix">';
     };
     const addEndUL = () => {
-      result += '</ul>\n';
+      result += "</ul>\n";
     };
     const addLI = (anchor, text) => {
       result +=
-        '<li><a class="toc-link" href="#' + anchor + '">' + text + '<a></li>\n';
+        '<li><a class="toc-link" href="#' + anchor + '">' + text + "<a></li>\n";
     };
 
-    this.toc.forEach(function(item) {
+    this.toc.forEach(function (item) {
       let levelIndex = levelStack.indexOf(item.level);
       // 没有找到相应level的ul标签，则将li放入新增的ul中
       if (levelIndex === -1) {
@@ -59,16 +59,19 @@ const tocObj = {
     return result;
   },
   toc: [],
-  index: 0,
+  index: 0
 };
 
 class MarkUtils {
   constructor() {
     this.rendererMD = new marked.Renderer();
-    this.rendererMD.heading = function(text, level, raw) {
+    this.rendererMD.heading = function (text, level, raw) {
       var anchor = tocObj.add(text, level);
       return `<h${level} id=${anchor}>${text}</h${level}>\n`;
     };
+    this.rendererMD.table = function (header, body) {
+      return '<table class="table" border="0" cellspacing="0" cellpadding="0">' + header + body + '</table>'
+    }
     highlight.configure({ useBR: true });
     marked.setOptions({
       renderer: this.rendererMD,
@@ -80,9 +83,9 @@ class MarkUtils {
       sanitize: false,
       smartLists: true,
       smartypants: false,
-      highlight: function(code) {
+      highlight: function (code) {
         return highlight.highlightAuto(code).value;
-      },
+      }
     });
   }
 

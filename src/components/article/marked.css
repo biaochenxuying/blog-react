@@ -44,18 +44,17 @@ img {
   margin: 0 auto;
 }
 
-table {
+.article table {
   text-align: center;
-  border: 1px solid #ddd;
+  border: 1px solid #eee;
   margin-bottom: 1.5em;
 }
-tr {
-  border-bottom: 1px solid #ddd;
+.article th,
+.article td {
+  padding: 0.5em;
 }
-th,
-td {
-  text-align: center;
-  padding: 0.3em;
+.article tr:nth-child(2n) {
+  background: #f7f7f7;
 }
 
 #content {
