@@ -1,6 +1,7 @@
 import './index.less';
 import logo from '../../assets/userLogo.jpeg';
 import BiaoChenXuYing from '../../assets/BiaoChenXuYing.png';
+import YingHeZaHuoPu from '../../assets/YingHeZaHuoPu.png';
 import React, { Component } from 'react';
 import { Avatar, message } from 'antd';
 import { Link } from 'react-router-dom';
@@ -130,11 +131,15 @@ class SliderRight extends Component {
           {list}
         </div>
         <div className="introduce">
-          <div className="title">本站公众号</div>
+          <div className="title">技术以内的 BB</div>
           <div className="content">
-            分享 WEB 全栈开发等相关的技术文章，热点资源<br />
-            全栈程序员的成长之路
-            <img style={{'width':'100%',marginTop: '20px'}} src={BiaoChenXuYing} alt="公众号" />
+            <img style={{'width':'100%'}} src={BiaoChenXuYing} alt="全栈修炼" />
+          </div>
+        </div>
+        <div className="introduce">
+          <div className="title">技术以外的 BB</div>
+          <div className="content">
+            <img style={{'width':'100%'}} src={YingHeZaHuoPu} alt="硬核杂货铺" />
           </div>
         </div>
       </div>

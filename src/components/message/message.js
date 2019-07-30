@@ -13,12 +13,25 @@ class TimeLineCustom extends Component {
       phone: '',
       name: '',
       content: '',
+      cacheTime: 0, // 缓存时间
+      times: 0, // 评论次数
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleOk = this.handleOk.bind(this);
   }
 
   addMessage({ email, name, phone, content }) {
+    if (this.state.times > 3) {
+      message.warning('您今天留言的次数已经用完，明天再来留言吧！', 1);
+      return;
+    }
+
+    let now = new Date();
+    let nowTime = now.getTime();
+    if (nowTime - this.state.cacheTime < 60000) {
+      message.warning('您留言太过频繁，1 分钟后再来留言吧！', 1);
+      return;
+    }
     this.setState({
       isLoading: true,
     });
@@ -39,7 +52,10 @@ class TimeLineCustom extends Component {
             isLoading: false,
           });
           message.success('您的留言，已保存到后台，管理员会尽快回复您的！', 1);
+          const times = this.state.times + 1
           this.setState({
+            cacheTime: nowTime,
+            times: times,
             email: '',
             name: '',
             phone: '',
@@ -61,6 +77,7 @@ class TimeLineCustom extends Component {
   }
 
   handleOk() {
+
     const reg = new RegExp(
       '^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$',
     ); //正则表达式
