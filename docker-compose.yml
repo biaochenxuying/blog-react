@@ -1,0 +1,21 @@
+version: "3.5"
+
+services:
+  front-blog-node:
+    build: .
+    container_name: "front-blog-node"
+    volumes:
+      - build:/usr/src/app/build
+
+  front-blog-node-nginx:
+    image: nginx
+    ports:
+      - 3004:80
+    container_name: "front-blog-node-nginx"
+    restart: unless-stopped
+    volumes:
+      - build:/usr/share/nginx/html:ro
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+
+volumes:
+  build:
