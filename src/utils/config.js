@@ -2,7 +2,7 @@
 // 请把生产环境的 redirect_url，client_id 和 client_secret 中的 "****", 换成自己创建的 OAuth App 的具体参数即可。
 const config = {
   'oauth_uri': 'https://github.com/login/oauth/authorize',
-  'redirect_uri': 'http://biaochenxuying.cn/login',
+  'redirect_uri': 'http://断线风筝.cn/login',
   'client_id': '****',
   'client_secret': '****',
 };

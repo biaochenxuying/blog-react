@@ -1,6 +1,6 @@
 import './index.less';
 import logo from '../../assets/userLogo.jpeg';
-import BiaoChenXuYing from '../../assets/BiaoChenXuYing.png';
+import 断线风筝 from '../../assets/BiaoChenXuYing.png';
 import YingHeZaHuoPu from '../../assets/YingHeZaHuoPu.png';
 import React, { Component } from 'react';
 import { Avatar, message } from 'antd';
@@ -110,7 +110,7 @@ class SliderRight extends Component {
     return (
       <div className="right">
         <Avatar className="right-logo" src={logo} size={130} icon="user" />
-        <div className="title">BiaoChenXuYing</div>
+        <div className="title">断线风筝</div>
         <div className="right-content">
           {/* <div className="item">
 						<div className="num">123</div>粉丝<Icon type="right" theme="outlined" />
@@ -133,7 +133,7 @@ class SliderRight extends Component {
         <div className="introduce">
           <div className="title">技术以内的 BB</div>
           <div className="content">
-            <img style={{'width':'100%'}} src={BiaoChenXuYing} alt="全栈修炼" />
+            <img style={{'width':'100%'}} src={断线风筝} alt="全栈修炼" />
           </div>
         </div>
         <div className="introduce">
