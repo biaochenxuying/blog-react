@@ -32,7 +32,7 @@
     "html-webpack-plugin": "4.0.0-alpha.2",
     "identity-obj-proxy": "3.0.0",
     "immutable": "^4.0.0-rc.12",
-    "jest": "23.6.0",
+    "jest": "29.3.1",
     "jest-pnp-resolver": "1.0.2",
     "jest-resolve": "23.6.0",
     "jest-watch-typeahead": "^0.2.1",
