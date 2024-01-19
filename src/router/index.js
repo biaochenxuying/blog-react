@@ -18,7 +18,7 @@ let config = [
     path: '/',
     exact: true,
     component: Loadable({
-      loader: () => import('../components/home/index.js'),
+      loader: () => import('../components/articles/articles.js'),
       loading: loadingComponent,
       delay: 300,
     }),

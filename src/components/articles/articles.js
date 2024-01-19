@@ -49,6 +49,7 @@ const lazyload = throttle(() => {
   state => state.articles,
   { saveArticlesList },
 )
+
 class Articles extends Component {
   constructor(props) {
     super(props);

@@ -27,31 +27,7 @@ class SliderRight extends Component {
 
   componentDidMount() {
     this.handleSearch();
-    // this.loadLink();
   }
-  // loadLink = () => {
-  //   https
-  //     .get(urls.getLinkList, {
-  //       params: {
-  //         type: this.state.type,
-  //         keyword: this.state.keyword,
-  //         pageNum: this.state.pageNum,
-  //         pageSize: this.state.pageSize,
-  //       },
-  //     })
-  //     .then(res => {
-  //       if (res.status === 200 && res.data.code === 0) {
-  //         this.setState({
-  //           linkList: res.data.data.list,
-  //         });
-  //       } else {
-  //         message.error(res.data.message);
-  //       }
-  //     })
-  //     .catch(err => {
-  //       console.log(err);
-  //     });
-  // };
 
   handleSearch = () => {
     https
@@ -91,26 +67,11 @@ class SliderRight extends Component {
         <span key={item._id}>{item.name}</span>
       </Link>
     ));
-    // const linkChildren = this.state.linkList.map(item => (
-    //   <a
-    //     key={item._id}
-    //     target="_blank"
-    //     rel="noopener noreferrer"
-    //     href={item.url}
-    //   >
-    //     <Icon
-    //       key={item._id}
-    //       type={item.icon}
-    //       theme="outlined"
-    //       style={{ fontSize: '20px', marginRight: '10px' }}
-    //     />
-    //   </a>
-    // ));
 
     return (
       <div className="right">
         <Avatar className="right-logo" src={logo} size={130} icon="user" />
-        <div className="title">BiaoChenXuYing</div>
+        <div className="title">Jessie You</div>
         <div className="right-content">
           {/* <div className="item">
 						<div className="num">123</div>粉丝<Icon type="right" theme="outlined" />
@@ -129,18 +90,6 @@ class SliderRight extends Component {
         <div className="tags">
           <div className="title">标签云</div>
           {list}
-        </div>
-        <div className="introduce">
-          <div className="title">技术以内的 BB</div>
-          <div className="content">
-            <img style={{'width':'100%'}} src={BiaoChenXuYing} alt="全栈修炼" />
-          </div>
-        </div>
-        <div className="introduce">
-          <div className="title">技术以外的 BB</div>
-          <div className="content">
-            <img style={{'width':'100%'}} src={YingHeZaHuoPu} alt="硬核杂货铺" />
-          </div>
         </div>
       </div>
     );

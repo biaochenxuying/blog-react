@@ -7,6 +7,8 @@ import Layouts from './views/layout';
 
 const App = ({ history }) => {
   return (
+    // 将history作为props传入
+    // "www.jessieblog.com/"
     <ConnectedRouter history={history}>
       <Switch>
         <Layouts>

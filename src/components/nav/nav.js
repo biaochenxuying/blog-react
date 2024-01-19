@@ -1,5 +1,4 @@
 import './index.less';
-import logo from '../../assets/logo.jpg';
 import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -9,10 +8,8 @@ import {
   Menu,
   Row,
   Col,
-  Button,
   Drawer,
   message,
-  Avatar,
 } from 'antd';
 import Register from '../register/register';
 import Login from '../login/login';
@@ -247,13 +244,13 @@ class Nav extends Component {
             }}
           >
             <Row className="container">
-              <Col style={{ width: '25%', float: 'left', lineHeight: '64px' }}>
+              {/* <Col style={{ width: '25%', float: 'left', lineHeight: '64px' }}>
                 <a href="http://biaochenxuying.cn/main.html">
                   <div className="logo">
                     <img src={logo} alt="" />
                   </div>
                 </a>
-              </Col>
+              </Col> */}
               <Col style={{ textAlign: 'center', width: '50%', float: 'left' }}>
                 <div className="nav-title"> {this.state.navTitle} </div>
               </Col>
@@ -288,13 +285,13 @@ class Nav extends Component {
             }}
           >
             <Row className="container">
-              <Col style={{ width: '120px', float: 'left' }}>
+              {/* <Col style={{ width: '120px', float: 'left' }}>
                 <a href="http://biaochenxuying.cn/main.html">
                   <div className="logo ">
                     <img src={logo} alt="" />
                   </div>
                 </a>
-              </Col>
+              </Col> */}
               <Col style={{ width: '780px', float: 'left' }}>
                 <Menu
                   theme="light"
@@ -307,107 +304,44 @@ class Nav extends Component {
                   <Menu.Item key="9">
                     <Link to="/">
                       <Icon type="home" theme="outlined" />
-                      首页
+                      Home page
                     </Link>
                   </Menu.Item>
                   <Menu.Item key="1">
                     <Link to="/articles">
                       <Icon type="ordered-list" theme="outlined" />
-                      文章
+                      Articles
                     </Link>
                   </Menu.Item>
                   <Menu.Item key="2">
                     <Link to="/hot">
                       <Icon type="fire" theme="outlined" />
-                      热门
-                    </Link>
-                  </Menu.Item>
-                  <Menu.Item key="8">
-                    <Link to="/archive">
-                      <Icon type="project" theme="outlined" />
-                      归档
+                      Hot
                     </Link>
                   </Menu.Item>
                   <Menu.Item key="7">
                     <Link to="/project">
                       <Icon type="database" theme="outlined" />
-                      项目
+                      Projects
                     </Link>
                   </Menu.Item>
                   <Menu.Item key="3">
                     <Link to="/timeLine">
                       <Icon type="hourglass" theme="outlined" />
-                      历程
-                    </Link>
-                  </Menu.Item>
-                  <Menu.Item key="4">
-                    <Link to="/message">
-                      <Icon type="message" theme="outlined" />
-                      留言
+                      History
                     </Link>
                   </Menu.Item>
                   <Menu.Item key="5">
                     <Link to="/about">
                       <Icon type="user" theme="outlined" />
-                      关于
+                      About
                     </Link>
                   </Menu.Item>
                 </Menu>
               </Col>
               <Col
                 style={{ textAlign: 'right', width: '300px', float: 'left' }}
-              >
-                {userInfo ? (
-                  <Menu
-                    onClick={this.handleLogout}
-                    style={{
-                      width: 220,
-                      lineHeight: '64px',
-                      display: 'inline-block',
-                    }}
-                    selectedKeys={[this.state.current]}
-                    mode="horizontal"
-                  >
-                    <SubMenu
-                      title={
-                        <span className="submenu-title-wrapper">
-                          <Avatar
-                            onClick={this.showDrawer}
-                            size="large"
-                            icon="user"
-                            src={userInfo.avatar}
-                            style={{ marginRight: 5 }}
-                          />
-                          {userInfo.name}
-                        </span>
-                      }
-                    >
-                      <MenuItemGroup>
-                        <Menu.Item key="logout">退出</Menu.Item>
-                      </MenuItemGroup>
-                    </SubMenu>
-                  </Menu>
-                ) : (
-                  <div>
-                    <Button
-                      type="primary"
-                      icon="login"
-                      style={{ marginRight: '15px' }}
-                      onClick={this.showLoginModal}
-                    >
-                      登 录
-                    </Button>
-                    <Button
-                      type="danger"
-                      icon="logout"
-                      style={{ marginRight: '15px' }}
-                      onClick={this.showRegisterModal}
-                    >
-                      注 册
-                    </Button>
-                  </div>
-                )}
-              </Col>
+              ></Col>
             </Row>
           </Header>
         )}

@@ -230,12 +230,12 @@ class Articles extends Component {
     document
       .getElementById('keywords')
       .setAttribute('content', '夜尽天明 的博客网站');
-    document
-      .getElementById('description')
-      .setAttribute(
-        'content',
-        '分享大前端开发等相关的技术文章，热点资源，全栈程序员的成长之路。',
-      );
+    // document
+    //   .getElementById('description')
+    //   .setAttribute(
+    //     'content',
+    //     '分享大前端开发等相关的技术文章，热点资源，全栈程序员的成长之路。',
+    //   );
   }
 
   componentWillMount() {

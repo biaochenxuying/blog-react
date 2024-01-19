@@ -8,10 +8,11 @@ export const history = createBrowserHistory();
 export default function configureStore(preloadedState) {
   const composeEnhancer =
     window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  // 在store中创建history对象
   const store = createStore(
-    createRootReducer(history),
-    preloadedState,
-    composeEnhancer(applyMiddleware(routerMiddleware(history))),
+    createRootReducer(history),  // 创建root reducer
+    preloadedState,     // 初始化状态（根路径）
+    composeEnhancer(applyMiddleware(routerMiddleware(history))),  // 添加中间件实现dispatch action导航
   );
 
   // Hot reloading
